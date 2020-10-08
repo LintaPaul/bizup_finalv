@@ -5,7 +5,7 @@
         class="col-lg-12 col-md-6 mx-auto my-auto"
         style="text-align: center"
       >
-        <form class="group ctsub">
+        <form class="group ctsub" method="POST" action="/post-usertype">
           <h3 style="color: #33499A">Registeration</h3>
           <div class="form-group">
             <label for="usertype"
@@ -70,13 +70,10 @@
               >
             </div>
             <nuxt-link to="/" class="btn save">Close</nuxt-link>&emsp;
-            <button type="submit" class="btn save">
-              <NLink to="/register2" style="color: white; text_decoration: none"
-                >Save & Continue</NLink
-              >
-            </button>
+            <input type="submit" class="btn save" value="Save and continue">
           </div>
         </form>
+        <a href="/view-usertype">View chosen type</a>
       </div>
     </div>
   </section>
