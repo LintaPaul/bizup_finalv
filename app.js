@@ -2,7 +2,8 @@ const express = require('express');
 const connectDB=require('./connection');
 const app= express();
 connectDB();
-app.use('/api/userModel',require('./'))
+app.use(express.json({extended:false}));
+app.use('/api/userModel',require('./api/user_reg'));
 const Port=process.env.Port || 3000;
 app.listen(Port,()=>console.log("server started"));
 /*app.use(bodyParser.urlencoded({ extended: false }));

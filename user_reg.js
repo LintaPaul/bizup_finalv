@@ -3,11 +3,11 @@ const user_det=new mongoose.Schema({
     usertype:{
         type:String
     },
-    ename{
+    ename:{
         type: String
     },
     about:{
         type: String
     }
 });
-module.exports=user_reg=mongoose.model('user_det',users);
+module.exports=user_reg=mongoose.model('user_det',user_det);
