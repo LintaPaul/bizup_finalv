@@ -1,16 +1,16 @@
 const mongoose= require('mongoose');
 const user_det=new mongoose.Schema({
     usertype:{
-        type:String
+        type:String,required: true
     },
     ename:{
-        type: String
+        type: String,required: true 
     },
     about:{
         type: String
     },
     email:{
-        type:String
+        type:String,required: true
     },
     category:{
         type:String
@@ -18,11 +18,12 @@ const user_det=new mongoose.Schema({
     address:{
         type:String
     },
-    phone:{
-        type:integer
-    },
     location:{
         type:String
     },
+    password:{
+        type:String,
+        required:true
+    }
 });
-module.exports=user_reg=mongoose.model('user_det',user_det);
+module.exports=mongoose.model('user_det',user_det);

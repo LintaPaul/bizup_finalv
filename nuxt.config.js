@@ -65,7 +65,7 @@ export default {
     // TODO: Remove it if you want to eject from codeSandbox
     "./codesandbox"
   ],
-
+  serverMiddleware: ['~/api/index.js'],
   /*
    ** HTTP module configuration
    */

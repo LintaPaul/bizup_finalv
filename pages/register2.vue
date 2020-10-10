@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div class="main">
-      <form>
+      <form method="POST" action="/register">
         <h3>Create Profile</h3>
         <h4>Fill in the following details to create a profile for your firm</h4>
         <div class="row">
@@ -15,7 +15,7 @@
                   class="form-control"
                   id="enterprisename"
                   placeholder="Eg:Lets Venture"
-                  v-model="user_det.ename"
+                  name="ename"
                 />
               </div>
               <div class="form-group">
@@ -26,7 +26,7 @@
                   class="form-control"
                   id="description"
                   placeholder="Eg:We are investors..."
-                  v-model="user_det.about"
+                  name="about"
                 />
               </div>
               <div class="form-group">
@@ -35,7 +35,7 @@
                   invest,others choose category in which your product/service
                   falls)</label
                 >
-                <select class="form-control" id="Category" v-model="user_det.category">
+                <select class="form-control" id="Category" name="category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
                   <option>Pottery</option>
@@ -90,7 +90,7 @@
                   class="form-control"
                   id="email"
                   placeholder="Eg:example@gmail.com"
-                  v-model="user_det.email"
+                  name="email"
                 />
               </div>
               <div class="form-group">
@@ -100,27 +100,27 @@
                   class="form-control"
                   id="location"
                   placeholder="Eg:Pune"
-                  v-model="user_det.location"
+                  name="location"
                 />
               </div>
               <div class="form-group">
                 <label for="Address">Address</label>
-                <textarea class="form-control" id="Address" v-model="user_det.address" />
+                <textarea class="form-control" id="Address" name="address" />
               </div>
               <div class="form-group">
                 <label for="Phone">Phone</label>
-                <input class="form-control" id="Phone" v-model="user_det.phone" />
+                <input class="form-control" id="Phone" />
               </div>
             </div>
             <div class="subcard">
               <h5>Login Details</h5>
               <div class="form-group">
                 <label for="Username">Username</label>
-                <input class="form-control" id="Username" />
+                <input class="form-control" id="Username" name="username" />
               </div>
               <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" />
+                <input type="password" class="form-control" id="Password" name="password"/>
               </div>
               <div class="form-group">
                 <label for="Cpass">Confirm Password</label>
@@ -129,7 +129,7 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="button--grey" @click="addToAPI()"> Confirm Registeration </button>
+        <input type="submit" value="Confirm registeration" class="button--grey"> 
       </form>
 
       
@@ -139,7 +139,7 @@
 <script>
 import axios from 'axios';
 export default {
-  data(){
+  /*data(){
     return{
       user_det:{
         ename:'',
@@ -167,7 +167,7 @@ export default {
       console.log(this.user_det);
     }
 
-  }
+  }*/
 }
 </script>
 <style scoped>
