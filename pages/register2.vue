@@ -15,6 +15,7 @@
                   class="form-control"
                   id="enterprisename"
                   placeholder="Eg:Lets Venture"
+                  v-model="user_det.ename"
                 />
               </div>
               <div class="form-group">
@@ -25,6 +26,7 @@
                   class="form-control"
                   id="description"
                   placeholder="Eg:We are investors..."
+                  v-model="user_det.about"
                 />
               </div>
               <div class="form-group">
@@ -33,7 +35,7 @@
                   invest,others choose category in which your product/service
                   falls)</label
                 >
-                <select class="form-control" id="Category">
+                <select class="form-control" id="Category" v-model="user_det.category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
                   <option>Pottery</option>
@@ -88,6 +90,7 @@
                   class="form-control"
                   id="email"
                   placeholder="Eg:example@gmail.com"
+                  v-model="user_det.email"
                 />
               </div>
               <div class="form-group">
@@ -97,15 +100,16 @@
                   class="form-control"
                   id="location"
                   placeholder="Eg:Pune"
+                  v-model="user_det.location"
                 />
               </div>
               <div class="form-group">
                 <label for="Address">Address</label>
-                <textarea class="form-control" id="Address" />
+                <textarea class="form-control" id="Address" v-model="user_det.address" />
               </div>
               <div class="form-group">
                 <label for="Phone">Phone</label>
-                <input class="form-control" id="Phone" />
+                <input class="form-control" id="Phone" v-model="user_det.phone" />
               </div>
             </div>
             <div class="subcard">
@@ -125,12 +129,47 @@
             </div>
           </div>
         </div>
+        <button type="submit" class="button--grey" @click="addToAPI()"> Confirm Registeration </button>
       </form>
 
-      <NLink to="/login" class="button--grey"> Confirm Registeration </NLink>
+      
     </div>
   </section>
 </template>
+<script>
+import axios from 'axios';
+export default {
+  data(){
+    return{
+      user_det:{
+        ename:'',
+        about:'',
+        category:'',
+        email:'',
+        location:'',
+        address:'',
+        phone:0,
+      },
+    }
+  },
+  methods:{
+    addToAPI(){
+      let newUser= {
+        ename: this.ename,
+        about: this.about,
+        category: this.category,
+        email: this.email,
+        location: this.location,
+        address: this.address,
+        phone: this.phone
+
+      }
+      console.log(this.user_det);
+    }
+
+  }
+}
+</script>
 <style scoped>
 .container {
   padding: 10px;

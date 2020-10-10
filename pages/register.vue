@@ -79,9 +79,10 @@
   </section>
 </template>
 <script>
-export default {
-  display: true,
-};
+import axios from 'axios';
+export default{
+  
+}
 </script>
 <style scoped>
 .ct {
