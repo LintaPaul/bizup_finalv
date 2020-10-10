@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div class="main">
-      <form method="POST" action="/register">
+      <form method="POST" action="" @submit.prevent="submitForm()">
         <h3>Create Profile</h3>
         <h4>Fill in the following details to create a profile for your firm</h4>
         <div class="row">
@@ -15,7 +15,7 @@
                   class="form-control"
                   id="enterprisename"
                   placeholder="Eg:Lets Venture"
-                  name="ename"
+                 v-model="ename"
                 />
               </div>
               <div class="form-group">
@@ -26,7 +26,7 @@
                   class="form-control"
                   id="description"
                   placeholder="Eg:We are investors..."
-                  name="about"
+                  v-model="about"
                 />
               </div>
               <div class="form-group">
@@ -35,7 +35,7 @@
                   invest,others choose category in which your product/service
                   falls)</label
                 >
-                <select class="form-control" id="Category" name="category">
+                <select class="form-control" id="Category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
                   <option>Pottery</option>
@@ -90,7 +90,7 @@
                   class="form-control"
                   id="email"
                   placeholder="Eg:example@gmail.com"
-                  name="email"
+                  v-model="email"
                 />
               </div>
               <div class="form-group">
@@ -100,7 +100,7 @@
                   class="form-control"
                   id="location"
                   placeholder="Eg:Pune"
-                  name="location"
+                  v-model="location"
                 />
               </div>
               <div class="form-group">
@@ -109,18 +109,18 @@
               </div>
               <div class="form-group">
                 <label for="Phone">Phone</label>
-                <input class="form-control" id="Phone" />
+                <input class="form-control" id="Phone" v-model="phone" />
               </div>
             </div>
             <div class="subcard">
               <h5>Login Details</h5>
               <div class="form-group">
                 <label for="Username">Username</label>
-                <input class="form-control" id="Username" name="username" />
+                <input class="form-control" id="Username" v-model="username" />
               </div>
               <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" name="password"/>
+                <input type="password" class="form-control" id="Password" v-model="password"/>
               </div>
               <div class="form-group">
                 <label for="Cpass">Confirm Password</label>
@@ -137,37 +137,62 @@
   </section>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  /*data(){
+  middleware: 'auth',
+  auth: 'guest',
+  data(){
     return{
-      user_det:{
-        ename:'',
-        about:'',
-        category:'',
-        email:'',
-        location:'',
-        address:'',
-        phone:0,
-      },
+      errors:null,
+      ename:null,
+      about:null,
+      email:null,
+      address:null,
+      location:null,
+      phone:null,
+      username:null,
+      password:null,
+
+      status:true,
     }
   },
   methods:{
-    addToAPI(){
-      let newUser= {
-        ename: this.ename,
-        about: this.about,
-        category: this.category,
-        email: this.email,
-        location: this.location,
-        address: this.address,
-        phone: this.phone
+    submitForm(){
+      this.$axios.$post( '/api/users/register', {
+          ename:this.ename,
+      about:this.about,
+      
+      email:this.email,
+      address:this.address,
+      location:this.location,
+      phone:this.phone,
+      username:this.username,
+      password:this.password,
 
-      }
-      console.log(this.user_det);
+        })
+        .then((response) => {
+          console.log(response)
+          if(response.data._id){
+            this.$router.push({ name:'user-login', params:{ registered:'yes' } })
+            // log in if successfully registered
+            this.$auth.loginWith('local', {
+                data: {
+                  password: this.password
+                }
+              })
+              .catch( (error) => {
+                console.log(error)
+              })
+          }
+        })
+        .catch( (error) => {
+          console.log(error)
+          if(error.response.data.errors){
+            this.errors = error.response.data.errors
+          }
+        });
     }
-
-  }*/
+  }
 }
 </script>
 <style scoped>

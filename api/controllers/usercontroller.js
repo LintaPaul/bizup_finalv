@@ -28,12 +28,13 @@ module.exports.register = [
 
     // initialize record
     var user = new User({
+        usertype:req.body.usertype,
         ename : req.body.ename,
         about:req.body.about,
-        category:req.body.category,
         address:req.body.address,
         location:req.body.location,
         email : req.body.email,
+        username:req.body.username,
         password : req.body.password,
     })
 

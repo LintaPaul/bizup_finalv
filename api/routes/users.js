@@ -7,12 +7,12 @@ const router = Router()
 const usersController = require('../controllers/usercontroller')
 
 // Register
-router.post('/register', usersController.register)
+router.post('/users/register', usersController.register)
 
 // Login
-router.post('/login', usersController.login)
+router.post('/users/login', usersController.login)
 
 // Get User
-router.get('/user', usersController.user)
+router.get('/users/user', usersController.user)
 
 module.exports = router
