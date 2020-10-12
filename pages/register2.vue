@@ -1,13 +1,76 @@
 <template>
   <section class="container">
     <div class="main">
-      <form method="POST" action="" @submit.prevent="submitForm()">
+      <form method="POST" action="">
         <h3>Create Profile</h3>
         <h4>Fill in the following details to create a profile for your firm</h4>
         <div class="row">
-          <div class="col-6">
-            <div class="subcard">
+          <div class="col-12">
+          <div class="subcard">
               <h5>Firm Details</h5>
+            <div class="form-group">
+               <label for="usertype"
+                >Which one of following describes you the best?</label
+                 >
+               <div class="form-check">
+                <input
+                class="form-check-input"
+                type="radio"
+                v-model="form.usertype"
+                id="Inv1"
+                value="Investor"
+                checked
+                />
+                <label class="form-check-label" for="Inv1"> Investor </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  v-model="form.usertype"
+                  id="StC"
+                  value="Startup"
+                />
+                <label class="form-check-label" for="StC">
+                Startup/Cottage Industry
+                </label>
+             </div>
+             <div class="form-check">
+               <input
+                 class="form-check-input"
+                 type="radio"
+                 v-model="form.usertype"
+                 id="Tech1"
+                 value="Techassist"
+               />
+               <label class="form-check-label" for="Tech1">
+                 Technical Assisstance
+                </label>
+             </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                v-model="form.usertype"
+                id="Mark1"
+                value="Marketing"
+              />
+              <label class="form-check-label" for="Mark1">
+                Marketing agency
+              </label>
+            </div>
+            <div class="form-check">
+               <input
+                class="form-check-input"
+                type="radio"
+                v-model="form.usertype"
+                id="Infra1"
+                value="Infrastructue"
+               />
+               <label class="form-check-label" for="Infra1">
+                Infrastructure Providers</label>
+             </div>
+           </div>
               <div class="form-group">
                 <label for="enterprisename">Enterprise Name</label>
                 <input required
@@ -15,7 +78,7 @@
                   class="form-control"
                   id="enterprisename"
                   placeholder="Eg:Lets Venture"
-                 v-model="ename"
+                 v-model="form.ename"
                 />
               </div>
               <div class="form-group">
@@ -26,7 +89,7 @@
                   class="form-control"
                   id="description"
                   placeholder="Eg:We are investors..."
-                  v-model="about"
+                  v-model="form.about"
                 />
               </div>
               <div class="form-group">
@@ -35,7 +98,7 @@
                   invest,others choose category in which your product/service
                   falls)</label
                 >
-                <select class="form-control" id="Category">
+                <select class="form-control" id="Category" v-model="form.category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
                   <option>Pottery</option>
@@ -47,38 +110,41 @@
                 Whom do you want to connect with through this platform?(pick 1
                 or more)
                 <div class="form-check">
+                  
+                  <input class="form-check-input" type="checkbox" id="Inv" value="Investor" v-model="form.preference"/>
                   <label class="form-check-label" for="Inv"> Investors </label>
-                  <input class="form-check-input" type="checkbox" id="Inv" />
                 </div>
                 <div class="form-check">
+                  
+                  <input class="form-check-input" type="checkbox" id="Start" value="Startup" v-model="form.preference" />
                   <label class="form-check-label" for="Start">
                     Startups/Cottage Industries
                   </label>
-                  <input class="form-check-input" type="checkbox" id="Start" />
                 </div>
                 <div class="form-check">
+                  
+                  <input class="form-check-input" type="checkbox" id="Tech" value="Technology" v-model="form.preference" />
                   <label class="form-check-label" for="Tech">
                     Technical Solution providers
                   </label>
-                  <input class="form-check-input" type="checkbox" id="Tech" />
                 </div>
                 <div class="form-check">
+                  
+                  <input class="form-check-input" type="checkbox" id="Infra" value="Infrastructure providers" v-model="form.preference" />
                   <label class="form-check-label" for="Infra">
                     Infrastructure providers
                   </label>
-                  <input class="form-check-input" type="checkbox" id="Infra" />
                 </div>
                 <div class="form-check">
+                  
+                  <input class="form-check-input" type="checkbox" id="Mark" value="Marketing" v-model="form.preference" />
                   <label class="form-check-label" for="Mark">
                     Marketing agencies
                   </label>
-                  <input class="form-check-input" type="checkbox" id="Mark" />
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="subcard">
+              <div class="col-12">
+          <div class="subcard">
               <h5>Contact Details</h5>
               <div class="form-group">
                 <label for="email"
@@ -90,7 +156,7 @@
                   class="form-control"
                   id="email"
                   placeholder="Eg:example@gmail.com"
-                  v-model="email"
+                  v-model="form.email"
                 />
               </div>
               <div class="form-group">
@@ -100,36 +166,35 @@
                   class="form-control"
                   id="location"
                   placeholder="Eg:Pune"
-                  v-model="location"
+                  v-model="form.location"
                 />
               </div>
               <div class="form-group">
                 <label for="Address">Address</label>
-                <textarea class="form-control" id="Address" name="address" />
+                <textarea class="form-control" id="Address" v-model="form.address" />
               </div>
               <div class="form-group">
                 <label for="Phone">Phone</label>
-                <input class="form-control" id="Phone" v-model="phone" />
-              </div>
+                <input class="form-control" id="Phone" v-model="form.phone" />
+               </div>
             </div>
-            <div class="subcard">
+               <div class="subcard">
               <h5>Login Details</h5>
               <div class="form-group">
                 <label for="Username">Username</label>
-                <input class="form-control" id="Username" v-model="username" />
+                <input class="form-control" id="Username" v-model="form.username" />
               </div>
               <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" v-model="password"/>
+                <input type="password" class="form-control" id="Password" v-model="form.password"/>
               </div>
               <div class="form-group">
                 <label for="Cpass">Confirm Password</label>
                 <input type="password" class="form-control" id="Cpass" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <input type="submit" value="Confirm registeration" class="button--grey"> 
+              </div></div></div>
+              <button class="button--grey"> Cancel</button>&emsp;
+        <input type="submit" value="Confirm registeration" style="align:right;" @click="addtoAPI" class="button--grey"/> 
+      </div></div></div>
       </form>
 
       
@@ -139,58 +204,44 @@
 <script>
 import axios from "axios";
 export default {
-  middleware: 'auth',
-  auth: 'guest',
   data(){
     return{
-      errors:null,
-      ename:null,
-      about:null,
-      email:null,
-      address:null,
-      location:null,
-      phone:null,
-      username:null,
-      password:null,
-
-      status:true,
+         form:{
+           usertype:'',
+           ename:'',
+           about:'',
+           category:'',
+           preference:[],
+           email:'',
+           location:'',
+           address:'',
+           phone:0,
+           username:'',
+           password:''
+          }
     }
   },
-  methods:{
-    submitForm(){
-      this.$axios.$post( '/api/users/register', {
-          ename:this.ename,
-      about:this.about,
-      
-      email:this.email,
-      address:this.address,
-      location:this.location,
-      phone:this.phone,
-      username:this.username,
-      password:this.password,
-
-        })
-        .then((response) => {
-          console.log(response)
-          if(response.data._id){
-            this.$router.push({ name:'user-login', params:{ registered:'yes' } })
-            // log in if successfully registered
-            this.$auth.loginWith('local', {
-                data: {
-                  password: this.password
-                }
-              })
-              .catch( (error) => {
-                console.log(error)
-              })
-          }
-        })
-        .catch( (error) => {
-          console.log(error)
-          if(error.response.data.errors){
-            this.errors = error.response.data.errors
-          }
-        });
+  methods: {
+    addtoAPI(){
+      let newform={
+        usertype:this.form.usertype,
+        ename:this.form.ename,
+           about:this.form.about,
+           category:this.form.category,
+           preference:this.form.preference,
+           email:this.form.email,
+           location:this.form.location,
+           address:this.form.address,
+           phone:this.form.phone,
+           username:this.form.username,
+           password:this.form.password
+      }
+      console.log(newform);
+      axios.post('http://localhost:3000/api/users/register').then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log(error);
+      })
     }
   }
 }
@@ -207,6 +258,7 @@ export default {
   border: #3499 4px solid;
   margin-bottom: 4px;
   padding: 12px;
+  text-align:justify;
 }
 .col-6 {
   padding: 10px;

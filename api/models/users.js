@@ -15,8 +15,14 @@ const user=new mongoose.Schema({
     category:{
         type:String,
     },
+    preference:{
+        type:Object,
+    },
     address:{
         type:String,required:true
+    },
+    phone:{
+        type:Number
     },
     location:{
         type:String,required:true
