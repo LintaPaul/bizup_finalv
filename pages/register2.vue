@@ -2,75 +2,35 @@
   <section class="container">
     <div class="main">
       <form method="POST" action="">
-        <h3>Create Profile</h3>
-        <h4>Fill in the following details to create a profile for your firm</h4>
         <div class="row">
-          <div class="col-12">
-          <div class="subcard">
-              <h5>Firm Details</h5>
-            <div class="form-group">
-               <label for="usertype"
-                >Which one of following describes you the best?</label
-                 >
-               <div class="form-check">
-                <input
-                class="form-check-input"
-                type="radio"
-                v-model="form.usertype"
-                id="Inv1"
-                value="Investor"
-                checked
-                />
-                <label class="form-check-label" for="Inv1"> Investor </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  v-model="form.usertype"
-                  id="StC"
-                  value="Startup"
-                />
-                <label class="form-check-label" for="StC">
-                Startup/Cottage Industry
-                </label>
-             </div>
-             <div class="form-check">
-               <input
-                 class="form-check-input"
-                 type="radio"
-                 v-model="form.usertype"
-                 id="Tech1"
-                 value="Techassist"
-               />
-               <label class="form-check-label" for="Tech1">
-                 Technical Assisstance
-                </label>
-             </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                v-model="form.usertype"
-                id="Mark1"
-                value="Marketing"
-              />
-              <label class="form-check-label" for="Mark1">
-                Marketing agency
-              </label>
-            </div>
-            <div class="form-check">
-               <input
-                class="form-check-input"
-                type="radio"
-                v-model="form.usertype"
-                id="Infra1"
-                value="Infrastructue"
-               />
-               <label class="form-check-label" for="Infra1">
-                Infrastructure Providers</label>
-             </div>
-           </div>
+          <h3>Create profile</h3>
+          <p>Fill in the following details to create a profile for your enterprise</p>
+          <div class="col-6">
+            <div class="subcard">
+              <h4>Firm Details</h4>
+              <div class="form-group">
+                <div class="form-check">
+                  Which one of the following describes  you the best?<br>
+                <label class="form-check-label">Investor</label>
+                <input class="form-check-input" type="radio" id="utype1"  v-model="form.usertype" value="Investor"/>
+                </div><!--form-check-->
+                <div class="form-check">
+                <label class="form-check-label">Startup/Cottage Industry</label>
+                <input class="form-check-input" type="radio" id="utype2"  v-model="form.usertype" value="Startup"/>
+                </div><!--form-check-->
+                <div class="form-check">
+                <label class="form-check-label">Technical solution providers</label>
+                <input class="form-check-input" type="radio" id="utype3"  v-model="form.usertype" value="Tech"/>
+                </div><!--form-check-->
+                <div class="form-check">
+                <label class="form-check-label">Marketing Agency</label>
+                <input class="form-check-input" type="radio" id="utype4"  v-model="form.usertype" value="Marketing"/>
+                </div><!--form-check-->
+                <div class="form-check">
+                <label for="form-check-label">Infrastructure providers</label>
+                <input class="form-check-input" type="radio" id="utype5"  v-model="form.usertype" value="Infra"/>
+                </div><!--form-check-->
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="enterprisename">Enterprise Name</label>
                 <input required
@@ -80,7 +40,7 @@
                   placeholder="Eg:Lets Venture"
                  v-model="form.ename"
                 />
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="description"
                   >Briefly explain about your service/product</label
@@ -91,13 +51,9 @@
                   placeholder="Eg:We are investors..."
                   v-model="form.about"
                 />
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
-                <label for="Category"
-                  >Category(If investor choose category you are interested to
-                  invest,others choose category in which your product/service
-                  falls)</label
-                >
+                <label for="Category">Choose your category(If you are an investor select the category you want to invest in)</label>
                 <select class="form-control" id="Category" v-model="form.category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
@@ -105,47 +61,38 @@
                   <option>Web/App services</option>
                   <option>Marketing</option>
                 </select>
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 Whom do you want to connect with through this platform?(pick 1
                 or more)
                 <div class="form-check">
-                  
-                  <input class="form-check-input" type="checkbox" id="Inv" value="Investor" v-model="form.preference"/>
-                  <label class="form-check-label" for="Inv"> Investors </label>
-                </div>
+                  <label class="form-check-label" for="ptype1">Investors</label>
+                  <input class="form-check-input" type="checkbox" id="ptype1" value="Investor" v-model="form.preference">
+                </div><!--form-check-->
                 <div class="form-check">
-                  
-                  <input class="form-check-input" type="checkbox" id="Start" value="Startup" v-model="form.preference" />
-                  <label class="form-check-label" for="Start">
-                    Startups/Cottage Industries
-                  </label>
-                </div>
+                  <label class="form-check-label" for="ptype2">Startup/Cottage Industry</label>
+                  <input class="form-check-input" type="checkbox" id="ptype2" value="Startup" v-model="form.preference">
+                </div><!--form-check-->
                 <div class="form-check">
-                  
-                  <input class="form-check-input" type="checkbox" id="Tech" value="Technology" v-model="form.preference" />
-                  <label class="form-check-label" for="Tech">
-                    Technical Solution providers
-                  </label>
-                </div>
+                  <label class="form-check-label" for="ptype3">Technical Assistance</label>
+                  <input class="form-check-input" type="checkbox" id="ptype3" value="Tech" v-model="form.preference">
+                </div><!--form-check-->
                 <div class="form-check">
-                  
-                  <input class="form-check-input" type="checkbox" id="Infra" value="Infrastructure providers" v-model="form.preference" />
-                  <label class="form-check-label" for="Infra">
-                    Infrastructure providers
-                  </label>
-                </div>
+                  <label class="form-check-label" for="ptype4">Marketing Agency</label>
+                  <input class="form-check-input" type="checkbox" id="ptype4" value="Marketing" v-model="form.preference">
+                </div><!--form-check-->
                 <div class="form-check">
-                  
-                  <input class="form-check-input" type="checkbox" id="Mark" value="Marketing" v-model="form.preference" />
-                  <label class="form-check-label" for="Mark">
-                    Marketing agencies
-                  </label>
-                </div>
-              </div>
-              <div class="col-12">
-          <div class="subcard">
-              <h5>Contact Details</h5>
+                  <label class="form-check-label" for="ptype5">Infrastructure Providers</label>
+                  <input class="form-check-input" type="checkbox" id="ptype5" value="Infra" v-model="form.preference">
+                </div><!--form-check-->
+
+              </div><!--form-group-->
+
+            </div><!--subcard-->
+          </div><!--col-6-->
+          <div class="col-6">
+            <div class="subcard">
+               <h5>Contact Details</h5>
               <div class="form-group">
                 <label for="email"
                   >Email(email of organisation or official email of
@@ -158,7 +105,7 @@
                   placeholder="Eg:example@gmail.com"
                   v-model="form.email"
                 />
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="location">Location</label>
                 <input
@@ -168,33 +115,34 @@
                   placeholder="Eg:Pune"
                   v-model="form.location"
                 />
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="Address">Address</label>
                 <textarea class="form-control" id="Address" v-model="form.address" />
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="Phone">Phone</label>
                 <input class="form-control" id="Phone" v-model="form.phone" />
-               </div>
-            </div>
-               <div class="subcard">
+               </div><!--form-group-->
+            </div><!--subcard-->
+            <div class="subcard">
               <h5>Login Details</h5>
               <div class="form-group">
                 <label for="Username">Username</label>
                 <input class="form-control" id="Username" v-model="form.username" />
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="Password">Password</label>
                 <input type="password" class="form-control" id="Password" v-model="form.password"/>
-              </div>
+              </div><!--form-group-->
               <div class="form-group">
                 <label for="Cpass">Confirm Password</label>
                 <input type="password" class="form-control" id="Cpass" />
-              </div></div></div>
-              <button class="button--grey"> Cancel</button>&emsp;
-        <input type="submit" value="Confirm registeration" style="align:right;" @click="addtoAPI" class="button--grey"/> 
-      </div></div></div>
+              </div><!--form-group-->
+            </div><!--subcard-->
+          </div><!--col-6-->
+        </div><!--row-->
+        <input type="submit" value="Confirm Registeration" class="button--grey" @click="addtoAPI"/>
       </form>
 
       
@@ -237,7 +185,7 @@ export default {
            password:this.form.password
       }
       console.log(newform);
-      axios.post('http://localhost:3000/api/users/register').then((response)=>{
+      axios.post('http//localhost:3000/api/users/register').then((response)=>{
         console.log(response);
       }).catch((error)=>{
         console.log(error);
