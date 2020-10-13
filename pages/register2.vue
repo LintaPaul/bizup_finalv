@@ -185,7 +185,7 @@ export default {
            password:this.form.password
       }
       console.log(newform);
-      axios.post('http//localhost:3000/api/users/register').then((response)=>{
+      axios.post('http//localhost:3000/api/users/register',this.newform).then((response)=>{
         console.log(response);
       }).catch((error)=>{
         console.log(error);
