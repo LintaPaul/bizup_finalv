@@ -7,7 +7,7 @@
       <div class="links">
         <u class="txt">New user?</u>
 
-        <NLink to="/register1" class="button--green">Register</NLink>&emsp;
+        <NLink to="/register2" class="button--green">Register</NLink>&emsp;
         <u class="txt">Already a user?</u>
         <NLink to="/login" class="button--grey">Login</NLink>
       </div>

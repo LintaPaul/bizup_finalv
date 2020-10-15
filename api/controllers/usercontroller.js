@@ -66,7 +66,7 @@ module.exports.register = [
 // Login
 module.exports.login = [
   // validation rules
-  validator.body('email', 'Please enter Email').isLength({ min: 1 }),
+  validator.body('username', 'Please enter username').isLength({ min: 1 }),
   validator.body('password', 'Please enter Password').isLength({ min: 1 }),
 
   function(req, res) {
@@ -77,7 +77,7 @@ module.exports.login = [
     }
 
     // validate email and password are correct
-    User.findOne({email: req.body.email}, function(err, user){
+    User.findOne({username: req.body.username}, function(err, user){
         if(err) {
             return res.status(500).json({
                 message: 'Error logging in',
@@ -87,20 +87,20 @@ module.exports.login = [
 
         if (user === null) {
           return res.status(500).json({
-            message: 'Email address you entered is not found.'
+            message: 'username you entered is not found.'
           });
         }
 
         // compare submitted password with password inside db
         return bcrypt.compare(req.body.password, user.password, function(err, isMatched) {
           if(isMatched===true){
+            
             return res.json({
               user: {
                 _id: user._id,
-                email: user.email,
-                full_name: user.full_name
+                username: user.username
               },
-              token: jwt.sign({_id: user._id, email: user.email, full_name: user.full_name}, config.authSecret) // generate JWT token here
+              token: jwt.sign({_id: user._id,username: user.username}, config.authSecret) // generate JWT token here
             });
           }
           else{

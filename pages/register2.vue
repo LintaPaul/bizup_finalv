@@ -3,7 +3,7 @@
     <div class="main">
       <form method="POST" action="">
         <div class="row">
-          <h3>Create profile</h3>
+          <h3>Create profile</h3><br>
           <p>Fill in the following details to create a profile for your enterprise</p>
           <div class="col-6">
             <div class="subcard">

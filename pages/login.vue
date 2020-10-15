@@ -3,12 +3,13 @@
     <div class="row">
       <div class="col-md-12 col-lg-12 login-form-1">
         <h3>Login Form</h3>
-        <form>
+        <form @submit.prevent="loginUser">
           <div class="form-group">
             <input
               type="text"
               class="form-control"
-              placeholder="Your Email *"
+              v-model="login.username"
+              placeholder="Your Username"
               value=""
             />
           </div>
@@ -17,14 +18,13 @@
               type="password"
               class="form-control"
               placeholder="Your Password *"
+              v-model="login.password"
               value=""
             />
           </div>
-          <div class="form-group">
-            <NLink to="/feeds"
-              ><input type="submit" class="btnSubmit" value="Login"
-            /></NLink>
-          </div>
+          <button class="btnSubmit" type="submit">
+              Sign in
+            </button>
           <div class="form-group">
             <a href="/" class="ForgetPwd">Back home</a>
           </div>
@@ -34,7 +34,19 @@
   </section>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      login: {
+        email: "",
+        password: ""
+      }
+    };
+  },
+  methods: {
+    async loginUser() {}
+  }
+};
 </script>
 <style scoped>
 .login-container {
