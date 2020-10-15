@@ -9,7 +9,7 @@
 
         <NLink to="/register2" class="button--green">Register</NLink>&emsp;
         <u class="txt">Already a user?</u>
-        <NLink to="/login" class="button--grey">Login</NLink>
+        <NLink to="/logincred" class="button--grey">Login</NLink>
       </div>
     </div>
   </section>

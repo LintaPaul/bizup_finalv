@@ -13,6 +13,6 @@ router.post('/users/register', usersController.register)
 router.post('/users/login', usersController.login)
 
 // Get User
-router.get('/users/user', usersController.user)
+//router.get('/users/user', usersController.user)
 
 module.exports = router

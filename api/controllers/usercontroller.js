@@ -42,9 +42,9 @@ module.exports.register = [
     })
 
     // encrypt password
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(user.password, salt);
-    user.password = hash
+    //var salt = bcrypt.genSaltSync(10);
+    //var hash = bcrypt.hashSync(user.password, salt);
+    //user.password = hash
 
     // save record
     user.save(function(err, user){
@@ -90,31 +90,41 @@ module.exports.login = [
             message: 'username you entered is not found.'
           });
         }
-
-        // compare submitted password with password inside db
-        return bcrypt.compare(req.body.password, user.password, function(err, isMatched) {
-          if(isMatched===true){
-            
+        else{
+          var psame=strcasecmp(req.body.password,user.password);
+          if(!psame){
             return res.json({
-              user: {
+              user:{
                 _id: user._id,
                 username: user.username
-              },
-              token: jwt.sign({_id: user._id,username: user.username}, config.authSecret) // generate JWT token here
+              }
             });
           }
           else{
             return res.status(500).json({
               message: 'Invalid Email or Password entered.'
             });
-          }
-        });
+          }}
+        // compare submitted password with password inside db
+        //return compare(req.body.password, user.password, function(err, isMatched) {
+          //if(isMatched===true){
+            // return res.json({
+             // user: {
+               // _id: user._id,
+               // username: user.username
+             // },
+              //token: jwt.sign({_id: user._id,username: user.username}, config.authSecret) // generate JWT token here
+            //});
+            
+         // }
+          
+        //});
     });
   }
 ]
 
 // Get User
-module.exports.user = function(req, res) {
+/*module.exports.user = function(req, res) {
   var token = req.headers.authorization
   if (token) {
     // verifies secret and checks if the token is expired
@@ -129,4 +139,4 @@ module.exports.user = function(req, res) {
   else{
     return res.status(401).json({message: 'unauthorized'})
   }
-}
+}*/
