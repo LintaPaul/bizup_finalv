@@ -10,7 +10,6 @@
               class="form-control"
               v-model="login.username"
               placeholder="Your Username"
-              value=""
             />
           </div>
           <div class="form-group">
@@ -19,7 +18,6 @@
               class="form-control"
               placeholder="Your Password *"
               v-model="login.password"
-              value=""
             />
           </div>
           <button class="btnSubmit" type="submit" @click="loginUser">
@@ -35,7 +33,9 @@
 </template>
 <script>
 import axios from "axios"
+import router from "vue-router"
 export default {
+  
   data() {
     return {
       login: {
@@ -55,8 +55,8 @@ export default {
       console.log(newlog);
       axios.post('http://localhost:3000/api/users/login',newlog).then((response)=>{
         console.log(response);
-        this.login.username=response.data.username;
-        this.id=response.data._id;
+        this.login.username=response.data.user.username;
+        this.id=response.data.user._id;
         alert("Login successfull");
        }).catch((error)=>{
         console.log(error);
@@ -71,7 +71,7 @@ export default {
   margin-top: 5%;
   margin-bottom: 5%;
   min-width: 50%;
-  background: url("../assets/images/bisup.jpg");
+  background: url("/assets/images/bisup.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }
