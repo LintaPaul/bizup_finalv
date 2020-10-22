@@ -24,7 +24,7 @@
           </div>
           <button class="btnSubmit" type="submit" @click="loginUser">
               Sign in
-            </button>
+            </button>{{login.username}}
           <div class="form-group">
             <a href="/" class="ForgetPwd">Back home</a>
           </div>
@@ -41,8 +41,9 @@ export default {
       login: {
         username: "",
         password: "",
-        id:''
-      }
+        
+      },
+      id:''
     }
   },
   methods: {
@@ -54,7 +55,7 @@ export default {
       console.log(newlog);
       axios.post('http://localhost:3000/api/users/login',newlog).then((response)=>{
         console.log(response);
-        this.username=response.data.username;
+        this.login.username=response.data.username;
         this.id=response.data._id;
         alert("Login successfull");
        }).catch((error)=>{
