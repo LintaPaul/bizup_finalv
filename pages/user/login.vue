@@ -40,7 +40,8 @@ export default {
     return {
       login: {
         username: "",
-        password: ""
+        password: "",
+        id:''
       }
     }
   },
@@ -53,6 +54,9 @@ export default {
       console.log(newlog);
       axios.post('http://localhost:3000/api/users/login',newlog).then((response)=>{
         console.log(response);
+        this.username=response.data.username;
+        this.id=response.data._id;
+        alert("Login successfull");
        }).catch((error)=>{
         console.log(error);
       })
