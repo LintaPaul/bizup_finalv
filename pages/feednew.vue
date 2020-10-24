@@ -1,57 +1,107 @@
 <template>
-
- <div>
-    <div class="d-flex justify-content-between align-items-center">
-      <h1>Feeds</h1>
-      <nuxt-link to="/users/add" class="btn btn-success">Add New</nuxt-link>
+  <section>
+    <div class="container">
+      <Headers />
+      <div class="row">
+        <div class="leftcolumn">
+            <div>
+              <select v-model="search">
+                  <option :value="n" v-for="n in ['please select','Handloom','Agriculture','Pottery','Web/App services','Marketing']">{{n}}</option>
+              </select>
+              </div>
+              <div class="alignBtn">
+                  <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateSlip()" value="Submit" />
+</label>
+</div>
+   <div v-for="user_alias in User">
+            <div v-show="user_alias.category==search">
+          <div class="card">
+            <h3>{{user_alias.ename}}</h3>
+           <h3>{{user_alias.category}}</h3>
+            <h3>{{user_alias.preference}}</h3>
+             <h3>{{user_alias.phone}}</h3>
+              <h3>{{user_alias.address}}</h3>
+            
+            <p>
+              <a href=" ">Let know your interest</a>
+            </p>
+            </div>
+          </div>
+            </div>
+            </div>
+         
+        </div>
+        <div class="rightcolumn">
+          <div class="card">
+            <h2>Nick</h2>
+            <div class="fakeimg" style="height: 200px">Image</div>
+            <p>
+              I am an entreprenuer who would like to find investors with similar
+              interests.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Chat history</h3>
+            <div class="fakeimg">Image</div>
+            <br />
+            <div class="fakeimg">Image</div>
+            <br />
+            <div class="fakeimg">Image</div>
+          </div>
+          <br /><br />
+          
+        </div>
+      </div>
     </div>
-    <hr>
-
-    
-    <div class="list-group"
-      v-if="users.length">
-      <nuxt-link
-        class="list-group-item list-group-item-action"
-        :to="'/users/'"
-        v-for="user in users"
-        :key="user._id">
-        {{ user.title }}
-      </nuxt-link>
-    </div>
-
-    <div class="alert alert-info"
-      v-else>
-      No records found.
-    </div>
-  </div>
-
-
+  </section>
 </template>
 
 <script>
-import axios from 'axios'
 import Headers from "../components/Header.vue";
+import axios from 'axios';
 export default {
-
- async asyncData(context){
-    const {data} = await context.$axios.get('/api/users')
-    return {
-      users : data
-  
-}
+  components: {
+    Headers,
   },
+   name: 'use4',
+    data(){
+        return{
+            User: [],
+            search:''
+            
+        }
+    },
+
+  methods:{
+    mounted()
+{
+    axios.get('http://localhost:3000/api/users').then((response)=>{
+    console.log(response.data);
+    this.User = response.data;
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+},
+generateSlip:function(search)
+{
+axios.get('http://localhost:3000/api/users?category=' + search).then((response)=>{
+    console.log(response.data);
+    this.User = response.data;
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
 }
 
+}
 
-
+};
 </script>
 
-
-<style>
-
+<style scoped >
 .container {
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +125,6 @@ export default {
   color: #35495e;
   letter-spacing: 1px;
 }
-
 .subtitle {
   font-weight: 300;
   font-size: 42px;
@@ -83,13 +132,10 @@ export default {
   word-spacing: 5px;
   padding-bottom: 15px;
 }
-
 .links {
   padding-top: 15px;
 }
-
 /* Header/Blog Title */
-
 /* Create two unequal columns that floats next to each other */
 /* Left column */
 .leftcolumn {
@@ -97,17 +143,18 @@ export default {
   float: left;
   width: 75%;
   text-align: left;
+  
 }
-
 /* Right column */
 .rightcolumn {
+ 
   float: left;
-  width: 25%;
+  width: 35%;
   padding: 15px;
   border-style: double;
   border-color: #93D;
+  height: 100%;
 }
-
 /* Fake image */
 .fakeimg {
   background-color: #aaa;
@@ -115,7 +162,6 @@ export default {
   height: 200px;
   padding: 20px;
 }
-
 /* Add a card effect for articles */
 .card {
   position: relative;
@@ -137,9 +183,7 @@ export default {
   display: table;
   clear: both;
 }
-
 /* Footer */
-
 .a {
   text-decoration: none;
 }
@@ -175,12 +219,6 @@ a:hover {
   font-weight: bold;
   text-decoration: none;
 }
-.form-group input,
-textarea,
-select {
-  width: 50%;
-}
-
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
   .leftcolumn,

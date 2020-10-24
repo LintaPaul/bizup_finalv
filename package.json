@@ -29,15 +29,15 @@
     "jquery": "3.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.8",
-    "nuxt": "^2.12.2",
+    "mongoose": "^5.10.9",
+    "nuxt": "^2.14.7",
     "reqlim": "^0.0.0",
     "vue": "2.6.12"
   },
   "keywords": [],
   "main": "codesandbox.js",
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.5"
   },
   "repository": {
     "type": "git",

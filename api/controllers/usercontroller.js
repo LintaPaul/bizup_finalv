@@ -4,6 +4,52 @@ const validator = require('express-validator')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
 
+// Get all
+module.exports.list = function (req, res, next) {
+  User.find({}, function(err, users){
+    if(err) {
+        return res.status(500).json({
+            message: 'Error getting records.'
+        });
+    }
+    return res.json(users);
+  });
+}
+// Get one
+module.exports.show = function(req, res) {
+  var category = req.params.cat;
+  User.findOne({category: cat}, function(err, user){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      if(!user) {
+          return res.status(404).json({
+              message: 'No such record'
+          });
+      }
+      return res.json(user);
+  });
+}
+
+// Get one2
+module.exports.show = function(req, res) {
+  var category = req.params.cat;
+  User.findOne({category: "Agriculture"}, function(err, user){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      if(!user) {
+          return res.status(404).json({
+              message: 'No such record'
+          });
+      }
+      return res.json(user);
+  });
+}
 
 // Register
 module.exports.register = [
@@ -129,4 +175,16 @@ module.exports.user = function(req, res) {
   else{
     return res.status(401).json({message: 'unauthorized'})
   }
+}
+
+// Get all
+module.exports.list = function (req, res, next) {
+  User.find({}, function(err, user){
+    if(err) {
+        return res.status(500).json({
+            message: 'Error getting records.'
+        });
+    }
+    return res.json(user);
+  });
 }
