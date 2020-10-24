@@ -5,6 +5,7 @@
       <div class="row">
         <div class="leftcolumn">
           <div class="card">
+            {{name}}
             <h2>Let's Venture</h2>
             <h5>Make your business dreams come true with us...</h5>
             <div class="fakeimg">
@@ -65,6 +66,11 @@ export default {
   components: {
     Headers,
   },
+  data(){
+    return{
+      name:localStorage.getItem("username")
+    }
+  }
 };
 </script>
 

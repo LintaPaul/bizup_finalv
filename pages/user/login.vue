@@ -54,10 +54,13 @@ export default {
       }
       console.log(newlog);
       axios.post('http://localhost:3000/api/users/login',newlog).then((response)=>{
-        console.log(response);
+        console.log(response.data.user);
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
-        alert("Login successfull");
+        
+        
+        location.replace('/feeds?username='+this.login.username);
+        
        }).catch((error)=>{
         console.log(error);
       })
