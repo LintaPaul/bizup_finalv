@@ -14,7 +14,7 @@
 </label>
 </div>
    <div :v-for="user_alias in User">
-            <div :v-show="user_alias.category==search">
+            <div :v-show="user_alias.category===search">
           <div class="card">
             <h3>{{user_alias.ename}}</h3>
            <h3>{{user_alias.category}}</h3>
