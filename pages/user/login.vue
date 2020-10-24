@@ -59,7 +59,7 @@ export default {
         this.id=response.data.user._id;
         
         
-        location.replace('/feeds?username='+this.login.username);
+        location.replace(`/feednew?username=${this.login.username}`);
         
        }).catch((error)=>{
         console.log(error);
