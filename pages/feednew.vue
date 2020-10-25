@@ -20,7 +20,8 @@
                       <div class="card" style="width:100%;">
   <div class="card-body">
     <h5 class="card-title">{{user_alias.ename}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{user_alias.location}}</h6>
+    <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
+    <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
     <p class="card-text">{{user_alias.about}}</p>
     <a href="#" class="card-link">Interested</a>
     <a href="#" class="card-link">Not interested</a>
