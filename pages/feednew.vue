@@ -3,55 +3,43 @@
     <div class="container">
       <Headers />
       <div class="row">
-        <div class="leftcolumn">
+          <div class="col-md-6">
             <div>
+              View recommendations by category
               <select v-model="search">
                   <option :value="n" v-for="n in ['please select','Handloom','Agriculture','Pottery','Web/App services','Marketing']">{{n}}</option>
               </select>
               </div>
               <div class="alignBtn">
                   <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateSlip()" value="Submit" />
-</label>
+                   </label>
+               </div>
+            <div v-for="user_alias in User">
+                <div v-show="user_alias.category===search">
+                       
+                      <div class="card" style="width:100%;">
+  <div class="card-body">
+    <h5 class="card-title">{{user_alias.ename}}</h5>
+    <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
+    <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
+    <p class="card-text">{{user_alias.about}}</p>
+    <a href="#" class="card-link">Interested</a>
+    <a href="#" class="card-link">Not interested</a>
+  </div>
 </div>
-   <div v-for="user_alias in User">
-            <div v-show="user_alias.category===search">
-          <div class="card">
-            <h3>{{user_alias.ename}}</h3>
-           <h3>{{user_alias.category}}</h3>
-            <h3>{{user_alias.preference}}</h3>
-             <h3>{{user_alias.phone}}</h3>
-              <h3>{{user_alias.address}}</h3>
-            
-            <p>
-              <a href=" ">Let know your interest</a>
-            </p>
+                  </div>
+               </div>
             </div>
-          </div>
+            <div class="col-md-4 offset-2">
+              <div class="card">
+                <button class="optbtns" @click="gotoprofile">View my Profile</button>
+                <!--<button class="optbtns" @click="gotorequests">View new requests</button>
+                <button class="optbtns" @click="gotochats">View contacts</button>-->
+              </div>
             </div>
-            </div>
-         
         </div>
-        <div class="rightcolumn">
-          <div class="card">
-            <h2>Nick</h2>
-            <div class="fakeimg" style="height: 200px">Image</div>
-            <p>
-              I am an entreprenuer who would like to find investors with similar
-              interests.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Chat history</h3>
-            <div class="fakeimg">Image</div>
-            <br />
-            <div class="fakeimg">Image</div>
-            <br />
-            <div class="fakeimg">Image</div>
-          </div>
-          <br /><br />
-          
-        </div>
-      </div>
+        
+    </div>
     <!--</div>-->
   </section>
 </template>
@@ -59,6 +47,8 @@
 <script>
 import Headers from "../components/Header.vue";
 import axios from 'axios';
+import {Router} from "vue-router";
+
 export default {
   components: {
     Headers,
@@ -67,7 +57,8 @@ export default {
     data(){
         return{
             User: [],
-            search:""
+            search:"",
+            id:this.$route.query.id
             
         }
     },
@@ -92,6 +83,9 @@ axios.get('http://localhost:3000/api/users?category=' + search).then((response)=
     .catch((error)=>{
         console.log(error);
     })
+},
+gotoprofile(){
+  location.replace(`/profile?id=${this.id}`);
 }
 
 }
@@ -140,7 +134,7 @@ axios.get('http://localhost:3000/api/users?category=' + search).then((response)=
 /* Left column */
 .leftcolumn {
   position: relative;
-  float: left;
+  float: right;
   width: 75%;
   text-align: left;
   
@@ -149,11 +143,12 @@ axios.get('http://localhost:3000/api/users?category=' + search).then((response)=
 .rightcolumn {
  
   float: left;
+  position:relative;
   width: 35%;
   padding: 15px;
   border-style: double;
   border-color: #93D;
-  height: 100%;
+
 }
 /* Fake image */
 .fakeimg {
@@ -165,7 +160,7 @@ axios.get('http://localhost:3000/api/users?category=' + search).then((response)=
 /* Add a card effect for articles */
 .card {
   position: relative;
-  height: 30%;
+
   background-color: rgb(250, 244, 244);
   padding: 20px;
   margin-top: 20px;
@@ -218,6 +213,14 @@ a:hover {
   font-size: 2.5rem;
   font-weight: bold;
   text-decoration: none;
+}
+.optbtns{
+  margin:4px;
+  padding:4px;
+  background-color: #93D;
+  color:white;
+  border:none;
+  border-radius:10px;
 }
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {

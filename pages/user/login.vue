@@ -58,8 +58,8 @@ export default {
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
         
-        
-        location.replace(`/feednew?username=${this.login.username}`);
+        //localStorage.setItem("current_user",response.data.user._id);
+        location.replace(`/feednew?id=${response.data.user._id}`);
         
        }).catch((error)=>{
         console.log(error);
@@ -74,7 +74,7 @@ export default {
   margin-top: 5%;
   margin-bottom: 5%;
   min-width: 50%;
-  background: url("/assets/images/bisup.jpg");
+  background: white;
   background-repeat: no-repeat;
   background-size: 100%;
 }
