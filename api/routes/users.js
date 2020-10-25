@@ -8,6 +8,8 @@ const router = Router()
 
 // Initialize Controller
 const usersController = require('../controllers/usercontroller')
+// Get One
+router.get('/users/:id', usersController.show1)
 // Get All
 router.get('/users', usersController.list)
 // Get One
