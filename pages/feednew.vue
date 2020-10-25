@@ -6,15 +6,15 @@
         <div class="leftcolumn">
             <div>
               <select v-model="search">
-                  <option :value="n" :v-for="n in ['please select','Handloom','Agriculture','Pottery','Web/App services','Marketing']">{{n}}</option>
+                  <option :value="n" v-for="n in ['please select','Handloom','Agriculture','Pottery','Web/App services','Marketing']">{{n}}</option>
               </select>
               </div>
               <div class="alignBtn">
                   <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateSlip()" value="Submit" />
 </label>
 </div>
-   <div :v-for="user_alias in User">
-            <div :v-show="user_alias.category===search">
+   <div v-for="user_alias in User">
+            <div v-show="user_alias.category===search">
           <div class="card">
             <h3>{{user_alias.ename}}</h3>
            <h3>{{user_alias.category}}</h3>
