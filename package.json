@@ -30,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.9",
+    "node-localstorage": "^2.1.6",
     "nuxt": "^2.14.7",
     "reqlim": "^0.0.0",
     "vue": "2.6.12"

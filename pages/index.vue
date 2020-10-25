@@ -22,7 +22,7 @@ export default {};
 .main {
   height: 100vh;
   min-width: 100% !important;
-  background: url("/assets/images/bisup.jpg");
+  background: white;
   background-repeat: no-repeat;
   background-size: 100% !important;
   background-blend-mode: blend;
