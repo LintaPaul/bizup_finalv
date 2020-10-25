@@ -1,44 +1,45 @@
 <template>
   <section>
   
-
+    <Headers />
     <div class="container">
-      <Headers />
+      
       <div class="row">
-          <div class="col-md-6">
-            <div>
-              View recommendations by category
+          <div style="margin-top:10%;">
+            View recommendations by category
               <select v-model="search">
                   <option :value="n" v-for="n in ['please select','Handloom','Agriculture','Pottery','Web/App services','Marketing']">{{n}}</option>
               </select>
-              </div>
               <div class="alignBtn">
                   <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateSlip()" value="Submit" />
-                   </label>
-               </div>
-            <div v-for="user_alias in User">
-                <div v-show="user_alias.category===search">
-                       
-                      <div class="card" style="width:100%;">
-  <div class="card-body">
-    <h5 class="card-title">{{user_alias.ename}}</h5>
-    <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
-    <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
-    <p class="card-text">{{user_alias.about}}</p>
-    <a href="#" class="card-link">Interested</a>
-    <a href="#" class="card-link">Not interested</a>
-  </div>
-</div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4 offset-2">
-              <div class="card">
+                   </label></div><br><br>
+                   <div class="col-md-6">
+              <div class="card" style="width:100%;margin-top:60%;">
                 <button class="optbtns" @click="gotoprofile">View my Profile</button>
                 <!--<button class="optbtns" @click="gotorequests">View new requests</button>
                 <button class="optbtns" @click="gotochats">View contacts</button>-->
               </div>
             </div>
+                   </div>
+                  
+            <div class="col-md-6 offset-md-1"  style="margin-top:10%;">
+            <div v-for="user_alias in User">
+                <div v-show="user_alias.category===search">
+                       
+                      <div class="card">
+                          <div class="card-body">
+                              <h5 class="card-title">{{user_alias.ename}}</h5>
+                              <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
+                              <p class="card-text">{{user_alias.about}}</p>
+                              <a href="#" class="card-link">Interested</a>
+                              <a href="#" class="card-link">Not interested</a>
+                          </div>
+                       </div>
+                  </div>
+               </div>
+            </div>
+             
         </div>
         
     </div>
@@ -60,7 +61,7 @@ export default {
         return{
             User: [],
             search:"",
-            id:this.$route.query.id
+            username:this.$route.query.username
             
         }
     },
@@ -87,7 +88,7 @@ axios.get('http://localhost:3000/api/users?category=' + search).then((response)=
     })
 },
 gotoprofile(){
-  location.replace(`/profile?id=${this.id}`);
+  location.replace(`/profile?username=${this.username}`);
 }
 
 }
@@ -106,12 +107,23 @@ gotoprofile(){
   background-size: 100% !important;
   overflow: visible;
   margin-top: 0px;
+  background-color: black;
 }
-.row {
-  position: absolute;
-  top: 50px;
-  height: 80%;
+.row{
+  
+   position: absolute;
+  top: 70px;
+  padding-top:30px;
+  height: 100%;
+  
 }
+/*.col-md-4{
+  position:absolute;
+  left:80%;
+  bottom:45%;
+  right:20%;
+
+}*/
 .title {
   font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -162,10 +174,9 @@ gotoprofile(){
 /* Add a card effect for articles */
 .card {
   position: relative;
-
   background-color: rgb(250, 244, 244);
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   border-radius: 5px;
 }
 .card a {

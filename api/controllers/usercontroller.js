@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs')
 //profile
 // Get one
 module.exports.show1 = function(req, res) {
-  var id = req.params.id;
-  User.findOne({_id: id}, function(err, user){
+  var uname = req.params.cat;
+  User.findOne({username:uname}, function(err, user){
       if(err) {
           return res.status(500).json({
               message: 'Error getting record.'

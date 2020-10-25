@@ -59,7 +59,7 @@ export default {
         this.id=response.data.user._id;
         
         //localStorage.setItem("current_user",response.data.user._id);
-        location.replace(`/feednew?id=${response.data.user._id}`);
+        location.replace(`/feednew?username=${response.data.user.username}`);
         
        }).catch((error)=>{
         console.log(error);
