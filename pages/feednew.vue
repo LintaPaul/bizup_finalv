@@ -16,8 +16,18 @@
                    <div class="col-md-6">
               <div class="card" style="width:100%;margin-top:60%;">
                 <button class="optbtns" @click="gotoprofile">View my Profile</button>
-                <!--<button class="optbtns" @click="gotorequests">View new requests</button>
-                <button class="optbtns" @click="gotochats">View contacts</button>-->
+                <!--<button class="optbtns" @click="gotorequests">View new requests</button>-->
+                <!--<button class="optbtns" @click="gotochats">View contacts</button>-->
+                <div>
+                  <h4>Requests for you</h4>
+                  <div v-for="u in User">
+                    <div v-show="u.id==id">
+                      <div v-for="req in u.requests">
+                        {{req}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
                    </div>
@@ -25,17 +35,17 @@
             <div class="col-md-6 offset-md-1"  style="margin-top:10%;">
             <div v-for="user_alias in User">
                 <div v-show="user_alias.category===search">
-                       
+                       <div v-show="user_alias._id!=id">
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
                               <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
                               <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
                               <p class="card-text">{{user_alias.about}}</p>
-                              <a href="#" class="card-link">Interested</a>
+                              <button  v-on:click="sendreq(id,user_alias.id)" class="optbtns">Interested</button>
                               <a href="#" class="card-link">Not interested</a>
                           </div>
-                       </div>
+                       </div></div>
                   </div>
                </div>
             </div>
@@ -61,7 +71,8 @@ export default {
         return{
             User: [],
             search:"",
-            username:this.$route.query.username
+            id:this.$route.query.id,
+            
             
         }
     },
@@ -87,8 +98,12 @@ axios.get('http://localhost:3000/api/users?category=' + search).then((response)=
         console.log(error);
     })
 },
+
 gotoprofile(){
-  location.replace(`/profile?username=${this.username}`);
+  location.replace(`/profile?id=${this.id}`);
+},
+sendreq:function(sender,receive){
+     
 }
 
 }

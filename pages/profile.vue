@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-12">
                  <div v-for="user_alias in User">
-                       <div v-show="user_alias.username==username">
+                       <div v-show="user_alias._id===id">
                          <h2> {{user_alias.ename}} </h2>
                          <h2> {{user_alias.about}} </h2>
                         </div>
@@ -32,12 +32,12 @@ export default {
     data(){
         return{
             User: [],
-            username:this.$route.query.username
+            id:this.$route.query.id
             
         }
     },
 methods:{
-  mounted()
+ /* mounted()
 {
     axios.get('http://localhost:3000/api/users').then((response)=>{
     console.log(response.data);
@@ -46,10 +46,10 @@ methods:{
     .catch((error)=>{
         console.log(error);
     })
-},
-  generateprofile:function(username)
+},*/
+  generateprofile:function(id)
   {
-    axios.get('http://localhost:3000/api/users?username='+ username).then((response)=>{
+    axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
     console.log(response.data);
     this.User = response.data;
     })

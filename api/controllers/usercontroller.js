@@ -2,12 +2,13 @@ const config = require('../config')
 const User = require('../models/users')
 const validator = require('express-validator')
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { ObjectId } = require('mongodb');
 //profile
 // Get one
 module.exports.show1 = function(req, res) {
-  var uname = req.params.cat;
-  User.findOne({username:uname}, function(err, user){
+  var id= req.params.id;
+  User.findOne({_id:ObjectId(id)}, function(err, user){
       if(err) {
           return res.status(500).json({
               message: 'Error getting record.'
@@ -36,7 +37,7 @@ module.exports.list = function (req, res, next) {
 }
 // Get one
 module.exports.show = function(req, res) {
-  var category = req.params.cat;
+  var category = req.params.category;
   User.findOne({category: cat}, function(err, user){
       if(err) {
           return res.status(500).json({

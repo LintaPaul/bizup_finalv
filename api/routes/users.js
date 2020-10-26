@@ -15,7 +15,7 @@ router.get('/users', usersController.list)
 // Get One
 router.get('/users/:category', usersController.show)
 // Get One
-router.get('/users/:username', usersController.show1)
+router.get('/users/:id', usersController.show1)
 // Get One2
 router.get('/users/:category', usersController.show)
 // Register
