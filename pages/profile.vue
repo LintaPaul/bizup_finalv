@@ -37,8 +37,12 @@
                                            <div v-for="up in user_alias.preference">
                                              <h5>{{up}}</h5>
                                              </div>
+                                             
+                                           
                                            <h5><b> YOUR CATEGORY:</b></h5><h5>{{user_alias.category}}</h5>
                                     </div><!--card2-->
+                                    
+                                    
                       </div><!--vshow-->
                     </div><!--vfor-->
                   </div><!--col-->
@@ -47,6 +51,7 @@
                    <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="Submit" />
                   </label>
           </div>
+          
       </div><!--container-->
 
   </section>
