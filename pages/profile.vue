@@ -1,21 +1,53 @@
 <template>
-  <section>
   
+  <section>
+    <Headers />
     <div class="container">
+      
       <div class="row">
         <div class="col-md-12">
-                 <div v-for="user_alias in User">
-                       <div v-show="user_alias._id===id">
-                         <h2> {{user_alias.ename}} </h2>
-                         <h2> {{user_alias.about}} </h2>
-                        </div>
-                 </div>
-            <div>
-         <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="Submit" />
-         </label>
-            </div>
-                 
-      </div></div></div>
+          <div v-for="user_alias in User">
+                      <div v-show="user_alias._id===id">
+                           <div class="card">
+                                   <div class="profile-img">
+                                        <a href="#">
+                                           <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" title=""/>
+                                        </a>
+                                   </div><!--pimg-->
+                           
+                                    <div style="position:relative;">
+                                        <h3 style="padding:50px;">ENTERPRISE NAME:
+                                        {{user_alias.ename}} </h3>
+                                    </div>
+                                  </div><!--card-->
+
+                                   <div class="card0">
+                                      <h4><b>ABOUT US</b></h4>
+                                      <h5>{{user_alias.about}} </h5>
+                                   </div><!--card0-->
+                                   <div class="card1">
+                                         <h4><b>CONTACT DETAILS</b></h4><br>
+                                         <h5><b>EMAIL_ID:</b></h5><h5>{{user_alias.email}}</h5><br>
+                                         <h5><b>PHONE_NO:</b></h5><h5>{{user_alias.phone}}</h5><br>
+                                         <h5><b>LOCATION:</b></h5><h5>{{user_alias.location}}</h5><br>
+                                         <h5><b>ADDRESS:</b></h5><h5>{{user_alias.address}}</h5><br>
+                                    </div><!--card1-->
+                                    <div class="card2">
+                                           <h5><b> YOUR PREFERENCES:</b></h5>
+                                           <div v-for="up in user_alias.preference">
+                                             <h5>{{up}}</h5>
+                                             </div>
+                                           <h5><b> YOUR CATEGORY:</b></h5><h5>{{user_alias.category}}</h5>
+                                    </div><!--card2-->
+                      </div><!--vshow-->
+                    </div><!--vfor-->
+                  </div><!--col-->
+             </div><!--row-->
+           <div><br><br>
+                   <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="Submit" />
+                  </label>
+          </div>
+      </div><!--container-->
 
   </section>
 </template>
@@ -61,33 +93,19 @@ methods:{
 };
 </script>
 
-<style>
-.fb-profile-block {
-  margin: auto;
-  position: relative;
-  width: 100%;
-}
-.cover-container {
-  background: #93D;
-  background: -webkit-radial-gradient(bottom, #93D);
-  background: radial-gradient(at bottom, #93D);
-}
-.fb-profile-block-thumb {
-  display: block;
-  height: 315px;
-  overflow: hidden;
-  position: relative;
-  text-decoration: none;
-}
-.fb-profile-block-menu {
-  border: 1px solid #d3d6db;
-  border-radius: 0 0 3px 3px;
+<style scoped>
+
+.row{
+  background-color: aliceblue;
+  margin:0px;
+  position:absolute;
+  top:40px;
 }
 .profile-img a {
   bottom: 15px;
   box-shadow: none;
   display: block;
-  left: 15px;
+  top: 0px;
   padding: 1px;
   position: absolute;
   height: 160px;
@@ -104,78 +122,55 @@ methods:{
   width: 158px;
 }
 
-.profile-name {
-  bottom: 60px;
-  left: 200px;
-  position: absolute;
-}
-.profile-name h2 {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 30px;
-  max-width: 275px;
-  position: relative;
-  text-transform: uppercase;
-}
 
-.fb-profile-block-menu {
-  height: 44px;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-.block-menu {
-  clear: right;
-  padding-left: 205px;
-}
-.block-menu ul {
-  margin: 0;
-  padding: 0;
-}
-.block-menu ul li {
-  display: inline-block;
-}
-.block-menu ul li a {
-  border-right: 1px solid #e9eaed;
-  float: left;
-  font-size: 14px;
-  font-weight: bold;
-  height: 42px;
-  line-height: 3;
-  padding: 0 17px;
-  position: relative;
-  vertical-align: middle;
-  white-space: nowrap;
-  color: #4b4f56;
-  text-transform: capitalize;
-}
-.block-menu ul li:first-child a {
-  border-left: 1px solid #e9eaed;
-}
 .card{
-  position:centre;
-  top: -140px;
-  bottom:0;
+  position:relative;
+  top: 10px;
+  bottom:-180px;
   box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
-  max-width:100;
-  margin:auto;
-  text-align:centre;
-  background-color:white;
+  margin-top:14px;
+  margin-bottom:14px;
+  padding-top:0px;
+  width:900px;
+  height:250px;
+  text-align:center;
+  text-position:bottom;
+  left:0;
+  right:0;
+  color:white;
+  background-color:#93D;
 }
-.card{
+.card0{
+  position:relative;
+  top:-10px;
+  bottom:-200px;
   box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
-  max-width:100;
-  margin:space;
-  text-align:centre;
-  background-color:white;
+  margin-top:14px;
+  width:900px;
+  padding:12px;
+  text-align:justify;
+  background-color:wheat;
 }
-.card{
+.card1{
+  position:relative;
+  top:-5px;
+  bottom:-150px;
   box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
-  max-width:100;
-  margin:space;
-  text-align:centre;
-  background-color:white;
+  margin-top:14px;
+  text-align:justify;
+  padding:12px;
+  background-color:wheat;
+}
+.card2{
+  position:relative;
+  top:-7px;
+  bottom:-200px;
+  box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-top:14px;
+  padding:12px;
+  width:900px;
+  text-align:justify;
+  background-color:wheat;
 }
 
 
