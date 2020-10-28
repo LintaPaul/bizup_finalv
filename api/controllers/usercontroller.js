@@ -2,8 +2,74 @@ const config = require('../config')
 const User = require('../models/users')
 const validator = require('express-validator')
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { ObjectId } = require('mongodb');
+//profile
+// Get one
+module.exports.show1 = function(req, res) {
+  var id= req.params.id;
+  User.findOne({_id:ObjectId(id)}, function(err, user){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      if(!user) {
+          return res.status(404).json({
+              message: 'No such record'
+          });
+      }
+      return res.json(user);
+  });
+}
 
+
+// Get all
+module.exports.list = function (req, res, next) {
+  User.find({}, function(err, users){
+    if(err) {
+        return res.status(500).json({
+            message: 'Error getting records.'
+        });
+    }
+    return res.json(users);
+  });
+}
+// Get one
+module.exports.show = function(req, res) {
+  var category = req.params.category;
+  User.findOne({category: cat}, function(err, user){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      if(!user) {
+          return res.status(404).json({
+              message: 'No such record'
+          });
+      }
+      return res.json(user);
+  });
+}
+
+// Get one2
+module.exports.show = function(req, res) {
+  var category = req.params.cat;
+  User.findOne({category: "Agriculture"}, function(err, user){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      if(!user) {
+          return res.status(404).json({
+              message: 'No such record'
+          });
+      }
+      return res.json(user);
+  });
+}
 
 // Register
 module.exports.register = [
@@ -66,7 +132,7 @@ module.exports.register = [
 // Login
 module.exports.login = [
   // validation rules
-  validator.body('email', 'Please enter Email').isLength({ min: 1 }),
+  validator.body('username', 'Please enter username').isLength({ min: 1 }),
   validator.body('password', 'Please enter Password').isLength({ min: 1 }),
 
   function(req, res) {
@@ -77,7 +143,7 @@ module.exports.login = [
     }
 
     // validate email and password are correct
-    User.findOne({email: req.body.email}, function(err, user){
+    User.findOne({username: req.body.username}, function(err, user){
         if(err) {
             return res.status(500).json({
                 message: 'Error logging in',
@@ -87,27 +153,27 @@ module.exports.login = [
 
         if (user === null) {
           return res.status(500).json({
-            message: 'Email address you entered is not found.'
+            message: 'username you entered is not found.'
           });
         }
-
         // compare submitted password with password inside db
         return bcrypt.compare(req.body.password, user.password, function(err, isMatched) {
           if(isMatched===true){
             return res.json({
               user: {
                 _id: user._id,
-                email: user.email,
-                full_name: user.full_name
-              },
-              token: jwt.sign({_id: user._id, email: user.email, full_name: user.full_name}, config.authSecret) // generate JWT token here
+                username: user.username
+             },
+              token: jwt.sign({_id: user._id,username: user.username}, config.authSecret) // generate JWT token here
             });
+            
           }
           else{
             return res.status(500).json({
               message: 'Invalid Email or Password entered.'
             });
           }
+          
         });
     });
   }
@@ -129,4 +195,16 @@ module.exports.user = function(req, res) {
   else{
     return res.status(401).json({message: 'unauthorized'})
   }
+}
+
+// Get all
+module.exports.list = function (req, res, next) {
+  User.find({}, function(err, user){
+    if(err) {
+        return res.status(500).json({
+            message: 'Error getting records.'
+        });
+    }
+    return res.json(user);
+  });
 }

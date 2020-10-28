@@ -7,9 +7,9 @@
       <div class="links">
         <u class="txt">New user?</u>
 
-        <NLink to="/register1" class="button--green">Register</NLink>&emsp;
+        <NLink to="/user/register" class="button--green">Register</NLink>&emsp;
         <u class="txt">Already a user?</u>
-        <NLink to="/login" class="button--grey">Login</NLink>
+        <NLink to="/user/login" class="button--grey">Login</NLink>
       </div>
     </div>
   </section>
@@ -22,7 +22,7 @@ export default {};
 .main {
   height: 100vh;
   min-width: 100% !important;
-  background: url("../assets/images/bisup.jpg");
+  background: white;
   background-repeat: no-repeat;
   background-size: 100% !important;
   background-blend-mode: blend;

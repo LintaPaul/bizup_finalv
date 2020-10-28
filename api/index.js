@@ -1,11 +1,18 @@
 // Create express instnace
 const express=require('express');
-const bodyParser=require("body-parser");
-const app = express()
+//const bodyParser=require("body-parser");
+//const session = require('express-session');
+const app = express();
 const connectDB=require('./db');
+//app.use(session({
+	//secret: 'secret',
+	//resave: true,
+	//saveUninitialized: true
+//}));
+
 // Init body-parser options (inbuilt with express)
 app.use(express.json());
-app.use(bodyParser.json()); 
+//app.use(bodyParser.json()); 
 app.use(express.urlencoded({ extended: true }));
 
 // Require & Import API routes
