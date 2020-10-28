@@ -43,7 +43,8 @@ export default {
         password: "",
         
       },
-      id:''
+      id:'',
+      loguser:[]
     }
   },
   methods: {
@@ -57,10 +58,11 @@ export default {
         console.log(response.data.user);
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
-        
+        this.loguser=response.data.user;
+        console.log(this.loguser);
         //localStorage.setItem("current_user",response.data.user._id);
-        location.replace(`/feednew?id=${response.data.user._id}`);
-        
+        location.replace(`/feednew?id=${this.id}`);
+       
        }).catch((error)=>{
         console.log(error);
       })

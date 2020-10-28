@@ -35,7 +35,7 @@
             <div class="col-md-6 offset-md-1"  style="margin-top:10%;">
             <div v-for="user_alias in User">
                 <div v-show="user_alias.category===search">
-                       <div v-show="user_alias._id!=id">
+                       <div v-show="user_alias._id!=loggeduser._id">
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
