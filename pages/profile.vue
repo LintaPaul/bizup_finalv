@@ -1,50 +1,65 @@
 <template>
   <section>
+  
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="fb-profile-block">
-            <div class="fb-profile-block-thumb cover-container"></div>
-            <div class="profile-img">
-              <a href="#">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                  alt=""
-                  title=""
-                />
-              </a>
+                 <div v-for="user_alias in User">
+                       <div v-show="user_alias._id===id">
+                         <h2> {{user_alias.ename}} </h2>
+                         <h2> {{user_alias.about}} </h2>
+                        </div>
+                 </div>
+            <div>
+         <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="Submit" />
+         </label>
             </div>
+                 
+      </div></div></div>
 
-            <div class="profile-name">
-              <h2>NAME</h2>
-            </div>
-
-            <div class="fb-profile-block-menu">
-              <div class="block-menu">
-                <ul>
-                  <li><a href="#">Timeline</a></li>
-                  <li><a href="#">about</a></li>
-                  <li><a href="#">Photos</a></li>
-                  <li><a href="#">Back to Feeds</a></li>
-                </ul>
-              </div>
-              <div class="block-menu">
-                <ul>
-                  <li><a href="#">Timeline</a></li>
-                  <li><a href="#">about</a></li>
-                  <li><a href="#">Photos</a></li>
-                  <li><a href="#">Back to Feeds</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 </template>
+<script>
+import Headers from "../components/Header.vue";
+import axios from 'axios';
+import {Router} from "vue-router";
 
-
+export default {
+  components: {
+    Headers,
+  },
+   name: 'use5',
+    data(){
+        return{
+            User: [],
+            id:this.$route.query.id
+            
+        }
+    },
+methods:{
+ /* mounted()
+{
+    axios.get('http://localhost:3000/api/users').then((response)=>{
+    console.log(response.data);
+    this.User = response.data;
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+},*/
+  generateprofile:function(id)
+  {
+    axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
+    console.log(response.data);
+    this.User = response.data;
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+  }
+  }
+};
+</script>
 
 <style>
 .fb-profile-block {
@@ -138,4 +153,31 @@
 .block-menu ul li:first-child a {
   border-left: 1px solid #e9eaed;
 }
+.card{
+  position:centre;
+  top: -140px;
+  bottom:0;
+  box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
+  max-width:100;
+  margin:auto;
+  text-align:centre;
+  background-color:white;
+}
+.card{
+  box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
+  max-width:100;
+  margin:space;
+  text-align:centre;
+  background-color:white;
+}
+.card{
+  box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
+  max-width:100;
+  margin:space;
+  text-align:centre;
+  background-color:white;
+}
+
+
+
 </style>

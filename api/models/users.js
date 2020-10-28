@@ -33,6 +33,12 @@ const user=new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    friends:{
+        type:Object,
+    },
+    requests:{
+        type:Object,
     }
 });
 module.exports=mongoose.model('user',user);
