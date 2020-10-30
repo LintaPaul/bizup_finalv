@@ -6,6 +6,8 @@
       
       <div class="row">
         <div class="col-md-12">
+          <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="View complete profile" />
+                  </label>
           <div v-for="user_alias in User">
                       <div v-show="user_alias._id===id">
                            <div class="card">
@@ -48,8 +50,7 @@
                   </div><!--col-->
              </div><!--row-->
            <div><br><br>
-                   <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="Submit" />
-                  </label>
+                   
           </div>
           
       </div><!--container-->

@@ -150,7 +150,8 @@
   </section>
 </template>
 <script>
-import axios from "axios";
+import axios from "axios"
+import {Router} from "vue-router"
 export default {
   data(){
     return{
@@ -186,9 +187,14 @@ export default {
       }
       console.log(newform);
       axios.post('http://localhost:3000/api/users/register',newform).then((response)=>{
+        if(response.message==="saved"){
+        alert("Registeration successfull!!Please sign in...");
+        location.replace('/');}
         console.log(response);
+        
       }).catch((error)=>{
         console.log(error);
+        alert(error);
       })
     }
   }

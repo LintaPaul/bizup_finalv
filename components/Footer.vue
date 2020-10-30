@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <h2>All rights reserved.</h2>
+    <h6>All rights reserved.</h6>
   </div>
 </template>
 <script>
@@ -11,10 +11,11 @@ export default {
 <style scoped>
 .footer {
   position: relative;
-  width: 100%;
+  min-width: 100%;
   height: 20%;
   bottom: 0;
   left: 0;
+  color:white;
   text-align: center;
   background: rgba(104, 7, 168, 0.61) !important;
 }

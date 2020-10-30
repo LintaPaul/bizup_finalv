@@ -128,7 +128,34 @@ module.exports.register = [
   }
 ]
 
-
+//requests
+/*module.exports.creq = [
+  function(req,res) {
+     id=req.body.reqid;
+     addid=req.body.userid;
+     User.insertOne({_id:ObjectId(id)},function(err, user){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      if(!user) {
+          return res.status(404).json({
+              message: 'No such record'
+          });
+      }
+      else{
+      user.update(
+        {},
+        {$set:{'requests.newField':addid}}
+      )}
+      return res.json({
+        message: 'saved',
+        _id: user._id
+    });
+  });
+  }
+]*/
 // Login
 module.exports.login = [
   // validation rules

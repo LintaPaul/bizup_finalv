@@ -42,7 +42,7 @@
                               <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
                               <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
                               <p class="card-text">{{user_alias.about}}</p>
-                              <button  v-on:click="sendreq(id,user_alias.id)" class="optbtns">Interested</button>
+                              <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
                               <a href="#" class="card-link">Not interested</a>
                           </div>
                        </div></div>
@@ -105,13 +105,25 @@ gotoprofile(){
 gotochats(){
   location.replace(`/chat?id=${this.id}`);
 },
-sendreq:function(sender,receive){
-     
-}
+/*sendreq:function(userid){
+     var sender= this.id;
+    var receive= userid;
+    let reqnew={
+      userid:sender,
+      reqid:receive,
 
+    }
+    axios.post('http://localhost:3000/api/users/creq',reqnew).then((response)=>{
+        console.log(reqnew);
+        console.log(response.data);
+      }).catch((error)=>{
+        console.log(error);
+      })
+}*/
 }
 
 };
+
 </script>
 
 <style scoped >

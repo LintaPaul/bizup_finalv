@@ -20,9 +20,12 @@
               v-model="login.password"
             />
           </div>
+          
           <button class="btnSubmit" type="submit" @click="loginUser">
               Sign in
+             
             </button>{{login.username}}
+             
           <div class="form-group">
             <a href="/" class="ForgetPwd">Back home</a>
           </div>
@@ -33,7 +36,7 @@
 </template>
 <script>
 import axios from "axios"
-import router from "vue-router"
+import {Router} from "vue-router"
 export default {
   
   data() {
@@ -60,11 +63,12 @@ export default {
         this.id=response.data.user._id;
         this.loguser=response.data.user;
         console.log(this.loguser);
-        //localStorage.setItem("current_user",response.data.user._id);
         location.replace(`/feednew?id=${this.id}`);
+      
        
        }).catch((error)=>{
         console.log(error);
+        alert("Sorry login failed"+error);
       })
 
     }

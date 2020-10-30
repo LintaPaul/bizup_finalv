@@ -3,13 +3,7 @@
     <div class="header">
       <div class="titles"><NLink to="/" class="link">Bizup</NLink></div>
 
-      <div class="titles">
-        <NLink to="../profile" class="linkr">Storefront</NLink>
-      </div>
-
-      <div class="titles">
-        <NLink to="../chat" class="linkr">Conversations</NLink>
-      </div>
+      
       <div class="titles">
         <NLink to="/" class="linkr">Logout</NLink>
       </div>
@@ -19,6 +13,7 @@
 <script>
 export default {
   name: "Headers",
+ 
 };
 </script>
 <style scoped>

@@ -4,7 +4,7 @@ export default {
    ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
    */
   head: {
-    title: "Nuxt.js starter for CSB",
+    title: "Bizup",
     meta: [
       { charset: "utf-8" },
       {
@@ -79,7 +79,7 @@ export default {
    ** Doc: https://nuxtjs.org/api/configuration-build
    */
   axios: {},
-  auth: {
+  /*auth: {
     strategies: {
 		local: {
 			endpoints: {
@@ -104,9 +104,9 @@ export default {
 		  login: '/user/login', // User will be redirected to this path if login is required
 		  logout: '/', // User will be redirected to this path if after logout, current route is protected
 		  home: '/' // User will be redirect to this path after login if accessed login page directly
-    },
+    }
     rewriteRedirects: true,
-},
+},*/
   build: {
     /*
      ** You can extend webpack config here
