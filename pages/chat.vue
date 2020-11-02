@@ -16,8 +16,9 @@
                       <div v-show="user_alias._id===id">
                         
                                
-                                  <div v-for="uf in user_alias.friends">
+
                                           <div class="card">
+                                              <div v-for="uf in user_alias.friends">
                                           <div class="card-body">
                                                  <h5 class="card-title">{{uf}}</h5>
                              

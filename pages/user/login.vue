@@ -24,7 +24,7 @@
           <button class="btnSubmit" type="submit" @click="loginUser">
               Sign in
              
-            </button>{{login.username}}
+            </button>
              
           <div class="form-group">
             <a href="/" class="ForgetPwd">Back home</a>
