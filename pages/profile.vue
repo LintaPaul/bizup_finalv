@@ -3,8 +3,10 @@
   <section>
     <Headers />
     <div class="container">
-      
+      <div><button class="optbtns" @click="redfeeds">Go to feeds</button>
+        </div>
       <div class="row">
+        
         <div class="col-md-12">
           <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="View complete profile" />
                   </label>
@@ -94,6 +96,9 @@ methods:{
     .catch((error)=>{
         console.log(error);
     })
+  },
+  redfeeds(){
+    location.replace(`/feednew?id=${this.id}`);
   }
   }
 };
@@ -177,6 +182,17 @@ methods:{
   width:900px;
   text-align:justify;
   background-color:wheat;
+}
+.optbtns{
+  margin:4px;
+  padding:4px;
+  background-color: #93D;
+  color:white;
+  border:none;
+  border-radius:10px;
+  position:absolute;
+  left:10px;
+  top:50px;
 }
 
 

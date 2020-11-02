@@ -16,18 +16,8 @@
                    <div class="col-md-6">
               <div class="card" style="width:100%;margin-top:60%;">
                 <button class="optbtns" @click="gotoprofile">View my Profile</button>
-                <!--<button class="optbtns" @click="gotorequests">View new requests</button>-->
                 <button class="optbtns" @click="gotochats">View contacts</button>
-                <div>
-                  <h4>Requests for you</h4>
-                  <div v-for="u in User">
-                    <div v-show="u.id==id">
-                      <div v-for="req in u.requests">
-                        {{req}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <button class="optbtns"> View requests</button>
               </div>
             </div>
                    </div>
@@ -54,17 +44,20 @@
         
     </div>
     <!--</div>-->
+    <Footers/>
   </section>
 </template>
 
 <script>
 import Headers from "../components/Header.vue";
+import Footers from "../components/Footer.vue";
 import axios from 'axios';
 import {Router} from "vue-router";
 
 export default {
   components: {
     Headers,
+    Footers
   },
    name: 'use4',
     data(){

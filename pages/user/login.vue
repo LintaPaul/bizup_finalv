@@ -80,7 +80,7 @@ export default {
   margin-top: 5%;
   margin-bottom: 5%;
   min-width: 50%;
-  background: white;
+  background: url("https://img.techpowerup.org/201102/bisup.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
 }

@@ -1,9 +1,10 @@
 <template>
   <section class="container">
     <div class="main">
+       
       <form method="POST" action="">
         <div class="row">
-          <h3>Create profile</h3><br>
+          <h3>Create profile</h3><br><br>
           <p>Fill in the following details to create a profile for your enterprise</p>
           <div class="col-6">
             <div class="subcard">
@@ -142,10 +143,11 @@
             </div><!--subcard-->
           </div><!--col-6-->
         </div><!--row-->
-        <input type="submit" value="Confirm Registeration" class="button--grey" @click="addtoAPI"/>
+        <input type="submit" value="Confirm Registeration" class="button--grey" @click="addtoAPI"/>&emsp;
+         <NLink to="/" class="button--grey">Back home</NLink>&emsp;
       </form>
 
-      
+     
     </div>
   </section>
 </template>
@@ -187,9 +189,9 @@ export default {
       }
       console.log(newform);
       axios.post('http://localhost:3000/api/users/register',newform).then((response)=>{
-        if(response.message==="saved"){
+       
         alert("Registeration successfull!!Please sign in...");
-        location.replace('/');}
+        location.replace('/');
         console.log(response);
         
       }).catch((error)=>{

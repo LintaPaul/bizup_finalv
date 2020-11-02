@@ -2,27 +2,36 @@
 <section>
   <Headers/>
   <div class="container">
+    <br><br>
     <div class="row">
+      
     <h3>View your connections in Bizup and keep your relations alive...</h3>
     <h4><label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="View now" />
                   </label></h4>
+                  <div>
+                    <button class="optbtns" @click="redfeeds">Go to feeds</button>
+                  </div>
    <div class="col-12">
                <div v-for="user_alias in User">
                       <div v-show="user_alias._id===id">
-                        <div v-for="uf in user_alias.friends">
-                      <div class="card">
-                          <div class="card-body">
-                              <h5 class="card-title">{{uf}}</h5>
+                        
+                               
+                                  <div v-for="uf in user_alias.friends">
+                                          <div class="card">
+                                          <div class="card-body">
+                                                 <h5 class="card-title">{{uf}}</h5>
                              
                              
-                         <a href="https://meet.google.com" target="blank" class="card-link">Click to schedule meeting</a>
-                          </div>
-                       </div></div>
-                  </div>
-               </div>
-            </div>
-    </div>
-        </div>
+                                                  <a href="https://meet.google.com" target="blank" class="card-link">Click to schedule meeting</a>
+                                          </div><!--card body--> 
+                                        </div><!--card-->
+                                 </div><!--v-for inner-->
+                         
+                      </div><!--show-->
+               </div><!--outerloop-->
+            </div><!--col-->
+    </div><!--row-->
+        </div><!--container-->
 </section>   
    
 </template>
@@ -65,6 +74,9 @@ methods:{
     .catch((error)=>{
         console.log(error);
     })
+  },
+  redfeeds(){
+    location.replace(`/feednew?id=${this.id}`);
   }
   }
 };
@@ -213,6 +225,9 @@ a:hover {
   color:white;
   border:none;
   border-radius:10px;
+  position:absolute;
+  left:0px;
+  top:0px;
 }
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
