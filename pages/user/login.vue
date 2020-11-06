@@ -47,7 +47,9 @@ export default {
         
       },
       id:'',
-      loguser:[]
+      loguser:[],
+      category:''
+
     }
   },
   methods: {
@@ -56,15 +58,15 @@ export default {
         username:this.login.username,
         password:this.login.password
       }
-      console.log(newlog);
       axios.post('http://localhost:3000/api/users/login',newlog).then((response)=>{
         console.log(response.data.user);
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
+        this.category=response.data.user.category;
         this.loguser=response.data.user;
-        console.log(this.loguser);
+        console.log(this.category);
         location.replace(`/feednew?id=${this.id}`);
-      
+        
        
        }).catch((error)=>{
         console.log(error);
@@ -80,7 +82,7 @@ export default {
   margin-top: 5%;
   margin-bottom: 5%;
   min-width: 50%;
-  background: url("https://img.techpowerup.org/201102/bisup.jpg");
+  background: white;
   background-repeat: no-repeat;
   background-size: 100%;
 }

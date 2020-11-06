@@ -99,7 +99,7 @@
                   >Email(email of organisation or official email of
                   representative)</label
                 >
-                <input
+                <input required
                   type="text"
                   class="form-control"
                   id="email"
@@ -130,11 +130,11 @@
               <h5>Login Details</h5>
               <div class="form-group">
                 <label for="Username">Username</label>
-                <input class="form-control" id="Username" v-model="form.username" />
+                <input required class="form-control" id="Username" v-model="form.username" />
               </div><!--form-group-->
               <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" v-model="form.password"/>
+                <input required type="password" class="form-control" id="Password" v-model="form.password"/>
               </div><!--form-group-->
               <div class="form-group">
                 <label for="Cpass">Confirm Password</label>
@@ -172,7 +172,12 @@ export default {
           }
     }
   },
-  methods: {
+  methods:
+   {
+     gotofront(){
+      alert("Registeration successfull!!Please sign in...");
+      //location.replace(`/`);
+    },
     addtoAPI(){
       let newform={
         usertype:this.form.usertype,
@@ -187,18 +192,21 @@ export default {
            username:this.form.username,
            password:this.form.password
       }
-      console.log(newform);
+      //console.log(newform);
       axios.post('http://localhost:3000/api/users/register',newform).then((response)=>{
        
-        alert("Registeration successfull!!Please sign in...");
-        location.replace('/');
         console.log(response);
+       
+        
+        this.gotofront();
+        
         
       }).catch((error)=>{
         console.log(error);
         alert(error);
       })
     }
+    
   }
 }
 </script>

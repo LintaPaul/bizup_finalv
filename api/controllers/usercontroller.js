@@ -120,6 +120,7 @@ module.exports.register = [
                 error: err
             });
         }
+        
         return res.json({
             message: 'saved',
             _id: user._id
@@ -189,7 +190,8 @@ module.exports.login = [
             return res.json({
               user: {
                 _id: user._id,
-                username: user.username
+                username: user.username,
+                category: user.category
              },
               token: jwt.sign({_id: user._id,username: user.username}, config.authSecret) // generate JWT token here
             });

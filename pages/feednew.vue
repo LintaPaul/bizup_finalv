@@ -17,14 +17,14 @@
               <div class="card" style="width:100%;margin-top:60%;">
                 <button class="optbtns" @click="gotoprofile">View my Profile</button>
                 <button class="optbtns" @click="gotochats">View contacts</button>
-                <button class="optbtns"> View requests</button>
+                <button class="optbtns" @click="gotorequests"> View requests</button>
               </div>
             </div>
                    </div>
                   
             <div class="col-md-6 offset-md-1"  style="margin-top:10%;">
             <div v-for="user_alias in User">
-                <div v-show="user_alias.category===search">
+                <div v-show="user_alias.category===this.category">
                        <div v-show="user_alias._id!=id">
                       <div class="card">
                           <div class="card-body">
@@ -44,7 +44,7 @@
         
     </div>
     <!--</div>-->
-    <Footers/>
+    
   </section>
 </template>
 
@@ -64,26 +64,20 @@ export default {
         return{
             User: [],
             search:"",
-            id:this.$route.query.id,
+            id:this.$route.query.id
             
             
         }
     },
 
   methods:{
-    mounted()
+    mounted: function()
 {
-    axios.get('http://localhost:3000/api/users').then((response)=>{
-    console.log(response.data);
-    this.User = response.data;
-    })
-    .catch((error)=>{
-        console.log(error);
-    })
+    this.generateSlip(this.category)
 },
 generateSlip:function(search)
 {
-axios.get('http://localhost:3000/api/users?category=' + search).then((response)=>{
+axios.get('http://localhost:3000/api/users').then((response)=>{
     console.log(response.data);
     this.User = response.data;
     })
@@ -98,6 +92,9 @@ gotoprofile(){
 gotochats(){
   location.replace(`/chat?id=${this.id}`);
 },
+gotorequests(){
+  location.replace(`/requests?id=${this.id}`);
+}
 /*sendreq:function(userid){
      var sender= this.id;
     var receive= userid;

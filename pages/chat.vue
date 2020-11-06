@@ -6,8 +6,7 @@
     <div class="row">
       
     <h3>View your connections in Bizup and keep your relations alive...</h3>
-    <h4><label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="View now" />
-                  </label></h4>
+    
                   <div>
                     <button class="optbtns" @click="redfeeds">Go to feeds</button>
                   </div>
@@ -55,18 +54,13 @@ export default {
            
         }
     },
-methods:{
- /* mounted()
+    mounted: function()
 {
-    axios.get('http://localhost:3000/api/users').then((response)=>{
-    console.log(response.data);
-    this.User = response.data;
-    })
-    .catch((error)=>{
-        console.log(error);
-    })
-},*/
-  generateprofile:function(id)
+   this.generateprofile(this.id)
+},
+
+methods:{
+ generateprofile:function(id)
   {
     axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
     console.log(response.data);

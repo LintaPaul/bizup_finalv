@@ -8,8 +8,6 @@
       <div class="row">
         
         <div class="col-md-12">
-          <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateprofile()" value="View complete profile" />
-                  </label>
           <div v-for="user_alias in User">
                       <div v-show="user_alias._id===id">
                            <div class="card">
@@ -68,6 +66,10 @@ export default {
   components: {
     Headers,
   },
+ mounted: function()
+{
+   this.generateprofile(this.id) 
+},
    name: 'use5',
     data(){
         return{
@@ -77,16 +79,7 @@ export default {
         }
     },
 methods:{
- /* mounted()
-{
-    axios.get('http://localhost:3000/api/users').then((response)=>{
-    console.log(response.data);
-    this.User = response.data;
-    })
-    .catch((error)=>{
-        console.log(error);
-    })
-},*/
+ 
   generateprofile:function(id)
   {
     axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
