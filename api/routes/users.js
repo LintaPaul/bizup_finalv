@@ -20,7 +20,8 @@ router.get('/users/:id', usersController.show1)
 router.get('/users/:category', usersController.show)
 // Register
 router.post('/users/register', usersController.register)
-//
+//categoryuser
+router.post('/users/idsearch',usersController.category)
 
 router.post('/users/req',usersController.creq)
 // Login

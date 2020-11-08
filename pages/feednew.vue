@@ -2,34 +2,23 @@
   <section>
   
     <Headers />
+    <h4 style="position:absolute;margin-top:-15%;">You are viewing recommendations based on your category in order of your preference</h4>  
     <div class="container">
+      
       <div class="row">
-          <div style="margin-top:10%;">
-            View recommendations by category
-              <select v-model="search">
-                  <option :value="n" v-for="n in ['please select','Handloom','Agriculture','Pottery','Web/App services','Marketing']">{{n}}</option>
-              </select>
-              <div class="alignBtn">
-                  <label><span>&nbsp;</span><input type="submit" v-on:click.prevent="generateSlip()" value="Submit" />
-                   </label></div><br><br>
-                   <div class="col-md-6">
-              <div class="card" style="width:100%;margin-top:60%;">
-                <button class="optbtns" @click="gotoprofile">View my Profile</button>
-                <button class="optbtns" @click="gotochats">View contacts</button>
-                <button class="optbtns" @click="gotorequests"> View requests</button>
-              </div>
-            </div>
-                   </div>
-                  
-            <div class="col-md-6 offset-md-1"  style="margin-top:10%;">
+          
+                
+            <div class="col-6"  style="margin-top:-20%;">
             <div v-for="user_alias in User">
-                <div v-show="user_alias.category===search">
-                       <div v-show="user_alias._id!=id">
+                <div  v-for="p in cat.preference" v-if="user_alias.category===cat.category">
+                       <div v-if="user_alias._id!=id && user_alias.usertype===p">
+                         {{p}}
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
                               <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
-                              <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span>
+                              <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
                               <p class="card-text">{{user_alias.about}}</p>
                               <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
                               <a href="#" class="card-link">Not interested</a>
@@ -38,7 +27,15 @@
                   </div>
                </div>
             </div>
-             
+            
+                   <div class="col-6" style="width:600px;margin-top:-20%;">
+              <div class="card">
+                <button class="optbtns" @click="gotoprofile">View my Profile</button>
+                <button class="optbtns" @click="gotochats">View contacts</button>
+                <button class="optbtns" @click="gotorequests"> View requests</button>
+              </div>
+            
+                   </div>
         </div>
         
     </div>
@@ -65,16 +62,28 @@ export default {
             User: [],
             search:"",
            id:this.$route.query.id,
-            
-            
+            cat:[]
         }
     },
-    
-
-  methods:{
     mounted: function()
 {
-    this.generateSlip(this.category)
+    this.getloggeduser(this.id),
+    this.generateSlip(this.cat.category)
+},
+
+  methods:{
+    
+getloggeduser:function(id)
+{
+  let newuser={
+    id:this.id
+  }
+  console.log(newuser);
+  axios.post('http://localhost:3000/api/users/idsearch',newuser).then((response)=>{
+     this.cat=response.data;
+  }).catch((error)=>{
+    console.log(error);
+  })
 },
 generateSlip:function(search)
 {
@@ -146,7 +155,7 @@ gotorequests(){
 }
 .row{
   
-   position: absolute;
+   position: relative;
   top: 70px;
   padding-top:30px;
   height: 100%;

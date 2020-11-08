@@ -129,6 +129,25 @@ module.exports.register = [
     })
   }
 ]
+//category
+module.exports.category = [
+  function(req, res) {
+    const id = req.body.id;
+    User.findOne({_id: ObjectId(id)}, function(err, user){
+        if(err) {
+            return res.status(500).json({
+                message: 'Error getting record.'
+            });
+        }
+        if(!user) {
+            return res.status(404).json({
+                message: 'No such record'
+            });
+        }
+        return res.json(user);
+    });
+  }
+]
 
 //requests
 module.exports.creq = [

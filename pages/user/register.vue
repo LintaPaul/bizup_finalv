@@ -59,7 +59,8 @@
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
                   <option>Pottery</option>
-                  <option>Web/App services</option>
+                  <option>Tech services</option>
+                  <option>Infrastructure providers</option>
                   <option>Marketing</option>
                 </select>
               </div><!--form-group-->

@@ -8,13 +8,13 @@
               <div v-show="user_alias._id==id">
                   <div v-for="q in user_alias.requests">
                         <div v-for="requser in User">
-                            <div v-if="requser.ename==q">
+                            <div v-if="requser._id==q">
                                 <div class="card col-12">
                                     <div class="card-title">{{requser.ename}}</div>
                                     <div class="card-body">
-                                        {{requser.about}}
-                                        {{requser.phone}}
-                                        {{requser.email}}
+                                        {{requser.about}}<br>
+                                        {{requser.phone}}<br>
+                                        {{requser.email}}<br>
                                         <br>
                                        <button class="optbtns">Accept</button>
                                        <button class="optbtns">Decline</button>
