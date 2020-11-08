@@ -3,7 +3,6 @@
   
     <Headers />
     <div class="container">
-      
       <div class="row">
           <div style="margin-top:10%;">
             View recommendations by category
@@ -24,7 +23,7 @@
                   
             <div class="col-md-6 offset-md-1"  style="margin-top:10%;">
             <div v-for="user_alias in User">
-                <div v-show="user_alias.category===this.category">
+                <div v-show="user_alias.category===search">
                        <div v-show="user_alias._id!=id">
                       <div class="card">
                           <div class="card-body">
@@ -43,7 +42,7 @@
         </div>
         
     </div>
-    <!--</div>-->
+    
     
   </section>
 </template>
@@ -59,16 +58,18 @@ export default {
     Headers,
     Footers
   },
-   name: 'use4',
+  
+   name: "users",
     data(){
         return{
             User: [],
             search:"",
-            id:this.$route.query.id
+           id:this.$route.query.id,
             
             
         }
     },
+    
 
   methods:{
     mounted: function()
@@ -84,6 +85,20 @@ axios.get('http://localhost:3000/api/users').then((response)=>{
     .catch((error)=>{
         console.log(error);
     })
+},
+sendreq:function(receiver)
+{
+  let requests={
+    sender:this.id,
+    receive:receiver
+  }
+  console.log(requests);
+  axios.post('http://localhost:3000/api/users/req',requests).then((response)=>{
+    console.log(response);
+    alert(response.data.message);
+  }).catch(error=>{
+      alert(error);
+  })
 },
 
 gotoprofile(){

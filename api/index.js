@@ -4,11 +4,8 @@ const express=require('express');
 //const session = require('express-session');
 const app = express();
 const connectDB=require('./db');
-//app.use(session({
-	//secret: 'secret',
-	//resave: true,
-	//saveUninitialized: true
-//}));
+const cors = require('cors');
+app.use(cors());
 
 // Init body-parser options (inbuilt with express)
 app.use(express.json());

@@ -21,7 +21,8 @@ router.get('/users/:category', usersController.show)
 // Register
 router.post('/users/register', usersController.register)
 //
-//router.post('/users/creq',usersController.creq)
+
+router.post('/users/req',usersController.creq)
 // Login
 router.post('/users/login', usersController.login)
 

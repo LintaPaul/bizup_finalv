@@ -48,7 +48,8 @@ export default {
       },
       id:'',
       loguser:[],
-      category:''
+      category:'',
+      url:''
 
     }
   },
@@ -62,11 +63,11 @@ export default {
         console.log(response.data.user);
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
-        this.category=response.data.user.category;
         this.loguser=response.data.user;
-        console.log(this.category);
-        location.replace(`/feednew?id=${this.id}`);
-        
+        //console.log(this.category);
+        this.url="/feednew?id="+this.id;
+       location.replace(`${this.url}`);
+       
        
        }).catch((error)=>{
         console.log(error);

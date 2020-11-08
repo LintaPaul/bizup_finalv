@@ -4,6 +4,7 @@ const validator = require('express-validator')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { ObjectId } = require('mongodb');
+const users = require('../models/users');
 //profile
 // Get one
 module.exports.show1 = function(req, res) {
@@ -130,33 +131,22 @@ module.exports.register = [
 ]
 
 //requests
-/*module.exports.creq = [
-  function(req,res) {
-     id=req.body.reqid;
-     addid=req.body.userid;
-     User.insertOne({_id:ObjectId(id)},function(err, user){
-      if(err) {
-          return res.status(500).json({
-              message: 'Error getting record.'
-          });
-      }
-      if(!user) {
-          return res.status(404).json({
-              message: 'No such record'
-          });
-      }
-      else{
-      user.update(
-        {},
-        {$set:{'requests.newField':addid}}
-      )}
-      return res.json({
-        message: 'saved',
-        _id: user._id
-    });
-  });
-  }
-]*/
+module.exports.creq = [
+     function(req,res,next) {
+       const sender=req.body.sender;
+       const receiver=req.body.receive;
+      User.updateOne({_id:ObjectId(receiver)},{$push: {requests:sender,},} ,{upsert:true},function(err, users){
+        if(err) {
+            return res.status(500).json({
+                message: 'Error getting records.'
+            });
+        }
+        return res.json({
+          message:"request sent!!"
+        });
+      });
+     }
+]
 // Login
 module.exports.login = [
   // validation rules
@@ -190,8 +180,7 @@ module.exports.login = [
             return res.json({
               user: {
                 _id: user._id,
-                username: user.username,
-                category: user.category
+                username: user.username
              },
               token: jwt.sign({_id: user._id,username: user.username}, config.authSecret) // generate JWT token here
             });
