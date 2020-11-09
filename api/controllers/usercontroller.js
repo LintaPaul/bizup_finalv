@@ -166,6 +166,41 @@ module.exports.creq = [
       });
      }
 ]
+//addfriends
+module.exports.cfriends = [
+  function(req,res,next) {
+    const sender=req.body.sender;
+    const receiver=req.body.receive;
+   User.updateOne({_id:ObjectId(sender)},{$push: {friends:receiver,},} ,{upsert:true},function(err, users){
+     if(err) {
+         return res.status(500).json({
+             message: 'Error getting records.'
+         });
+     }
+     return res.json({
+       message:"Added to your contacts in bizup!!"
+     });
+   });
+  }
+]
+//removerequests
+module.exports.remreq = [
+  function(req,res,next) {
+    const sender=req.body.sender;
+    const receiver=req.body.receive;
+   User.updateOne({_id:ObjectId(sender)},{$pull: {requests:receiver,},} ,function(err, users){
+     if(err) {
+         return res.status(500).json({
+             message: 'Error getting records.'
+         });
+     }
+     return res.json({
+       message:"This request removed!!"
+     });
+   });
+  }
+]
+
 // Login
 module.exports.login = [
   // validation rules

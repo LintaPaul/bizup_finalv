@@ -22,8 +22,12 @@ router.get('/users/:category', usersController.show)
 router.post('/users/register', usersController.register)
 //categoryuser
 router.post('/users/idsearch',usersController.category)
-
+//send req
 router.post('/users/req',usersController.creq)
+//addtofriends
+router.post('/users/friends',usersController.cfriends)
+//removerequest
+router.post('/users/remreq',usersController.remreq)
 // Login
 router.post('/users/login', usersController.login)
 

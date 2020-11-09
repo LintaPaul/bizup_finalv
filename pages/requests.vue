@@ -16,8 +16,7 @@
                                         {{requser.phone}}<br>
                                         {{requser.email}}<br>
                                         <br>
-                                       <button class="optbtns">Accept</button>
-                                       <button class="optbtns">Decline</button>
+                                       <button class="optbtns" @click="addtofriends(requser._id)">Accept</button>
                                         </div>
                                         
                                 </div>
@@ -65,6 +64,25 @@ methods:{
   },
   redfeeds(){
     location.replace(`/feednew?id=${this.id}`);
+  },
+  addtofriends(receiver){
+    let requests={
+    sender:this.id,
+    receive:receiver
+   }
+  console.log(requests);
+  axios.post('http://localhost:3000/api/users/friends',requests).then((response)=>{
+    console.log(response);
+    alert(response.data.message);
+  }).catch(error=>{
+      alert(error);
+  }),
+  axios.post('http://localhost:3000/api/users/remreq',requests).then((response)=>{
+    console.log(response);
+    alert(response.data.message);
+  }).catch(error=>{
+      alert(error);
+  })
   }
   }
 };

@@ -2,7 +2,7 @@
   <section>
   
     <Headers />
-    <h4 style="position:absolute;margin-top:-15%;">You are viewing recommendations based on your category in order of your preference</h4>  
+    <h4 style="position:absolute;margin-top:-15%;">You are viewing recommendations based on your category</h4>  
     <div class="container">
       
       <div class="row">
@@ -10,9 +10,8 @@
                 
             <div class="col-6"  style="margin-top:-20%;">
             <div v-for="user_alias in User">
-                <div  v-for="p in cat.preference" v-if="user_alias.category===cat.category">
-                       <div v-if="user_alias._id!=id && user_alias.usertype===p">
-                         {{p}}
+                <div  v-if="user_alias.category===cat.category">
+                       <div v-if="user_alias._id!=id && checkifreq(user_alias._id,cat.requests)===true">
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
@@ -72,7 +71,12 @@ export default {
 },
 
   methods:{
-    
+    checkifreq:function(id,reqs){
+      if(id in reqs)
+      return false;
+      else
+      return true;
+    },
 getloggeduser:function(id)
 {
   let newuser={
