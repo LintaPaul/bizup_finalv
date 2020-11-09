@@ -1,5 +1,5 @@
 <template>
-  <section>
+ <section>
   
     <Headers />
     <h4 style="position:absolute;margin-top:-15%;">You are viewing recommendations based on your category in order of your preference</h4>  
@@ -9,10 +9,14 @@
           
                 
             <div class="col-6"  style="margin-top:-20%;">
+            
             <div v-for="user_alias in User">
-                <div  v-for="p in cat.preference" v-if="user_alias.category===cat.category">
-                       <div v-if="user_alias._id!=id && user_alias.usertype===p">
-                         {{p}}
+                <div  v-for="p in cat.preference" >
+                       <div v-if="user_alias._id!=id">
+                         
+                         <div v-if="p==='Marketing' || p==='Infra' || p==='Tech'">
+                        <div v-if="user_alias.usertype===p">
+                         
                       <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
@@ -23,10 +27,30 @@
                               <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
                               <a href="#" class="card-link">Not interested</a>
                           </div>
-                       </div></div>
+                       </div></div></div>
+                       <div v-if="p==='Investor' || p==='Startup'">
+                         <div v-if="user_alias.category===cat.category">
+                          <div v-if="user_alias.usertype===p">
+                         <div class="card">
+                          <div class="card-body">
+                              <h5 class="card-title">{{user_alias.ename}}</h5>
+                              <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
+                              <p class="card-text">{{user_alias.about}}</p>
+                              <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
+                              <a href="#" class="card-link">Not interested</a>
+                          </div>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
+                       </div>
                   </div>
                </div>
-            </div>
+               </div>
+              
+            
             
                    <div class="col-6" style="width:600px;margin-top:-20%;">
               <div class="card">
@@ -37,8 +61,9 @@
             
                    </div>
         </div>
+        </div>
         
-    </div>
+    
     
     
   </section>
