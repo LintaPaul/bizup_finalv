@@ -1,5 +1,5 @@
 <template>
-  <section>
+ <section>
   
     <Headers />
     <h4 style="position:absolute;margin-top:-15%;">You are viewing recommendations based on your category</h4>  
@@ -9,10 +9,17 @@
           
                 
             <div class="col-6"  style="margin-top:-20%;">
+            
             <div v-for="user_alias in User">
-                <div  v-if="user_alias.category===cat.category">
-                       <div v-if="user_alias._id!=id && checkifreq(user_alias._id,cat.requests)===true">
-                      <div class="card">
+                  <div v-if="cat.usertype==='Investor'|| cat.usertype==='Startup'">
+                <div v-if="user_alias._id!=id  && checkifreq(user_alias._id,cat.requests)===true">
+                <div  v-for="p in cat.preference" >
+                    
+                         
+                     <div v-if="p==='Marketing' || p==='Infra' || p==='Tech'">
+                      <div v-if="user_alias.usertype===p">
+                         
+                        <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
                               <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
@@ -21,11 +28,54 @@
                               <p class="card-text">{{user_alias.about}}</p>
                               <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
                               <a href="#" class="card-link">Not interested</a>
-                          </div>
-                       </div></div>
+                          </div><!--card-body-->
+                       </div><!--card-->
+                       </div><!--usertype-->
+                       </div><!--mark/tech/infra-->
+                       <div v-if="p==='Investor' || p==='Startup'">
+                         <div v-if="user_alias.category===cat.category">
+                          <div v-if="user_alias.usertype===p">
+                         <div class="card">
+                          <div class="card-body">
+                              <h5 class="card-title">{{user_alias.ename}}</h5>
+                              <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
+                              <p class="card-text">{{user_alias.about}}</p>
+                              <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
+                              <a href="#" class="card-link">Not interested</a>
+                          </div><!--card-body-->
+                       </div><!--card-->
+                       </div><!--v-if p-->
+                       </div><!--v-if category-->
+                       </div><!--v-if inv/startup-->
+                    </div>
                   </div>
                </div>
+            
+                  <div v-if="cat.usertype==='Infra'||cat.usertype=='Tech'||cat.usertype==='Marketing'">
+                    <div v-for="p in cat.preference">
+                      <div v-if="user_alias.usertype==p">
+                          <div class="card">
+                          <div class="card-body">
+                              <h5 class="card-title">{{user_alias.ename}}</h5>
+                              <span class="card-subtitle mb-2 text-muted">Location:{{user_alias.location}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Contact:{{user_alias.phone}}</span><br>
+                              <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
+                              <p class="card-text">{{user_alias.about}}</p>
+                              <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
+                              <a href="#" class="card-link">Not interested</a>
+                          </div><!--card-body-->
+                       </div>
+                      </div>
+                    </div>
+               </div>
             </div>
+            </div>
+
+           
+              
+            
             
                    <div class="col-6" style="width:600px;margin-top:-20%;">
               <div class="card">
@@ -33,11 +83,10 @@
                 <button class="optbtns" @click="gotochats">View contacts</button>
                 <button class="optbtns" @click="gotorequests"> View requests</button>
               </div>
-            
-                   </div>
-        </div>
-        
-    </div>
+            </div><!--col-6-2-->
+        </div><!--row-->
+        </div><!--container-->
+    
     
     
   </section>
@@ -72,9 +121,10 @@ export default {
 
   methods:{
     checkifreq:function(id,reqs){
-      if(id in reqs)
-      return false;
-      else
+      for(var i in reqs){
+        if(id==reqs[i])
+        return false;
+      }
       return true;
     },
 getloggeduser:function(id)

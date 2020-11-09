@@ -16,7 +16,7 @@
                                         {{requser.phone}}<br>
                                         {{requser.email}}<br>
                                         <br>
-                                       <button class="optbtns" @click="addtofriends(requser._id)">Accept</button>
+                                       <button class="optbtns" @click="callboth(requser._id)">Accept</button>
                                         </div>
                                         
                                 </div>
@@ -51,7 +51,10 @@ export default {
         }
     },
 methods:{
- 
+   callboth:function(id){
+     this.addtofriends(id),
+     this.removefromrequests(id)
+   },
   generatereq:function(id)
   {
     axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
@@ -68,7 +71,7 @@ methods:{
   addtofriends(receiver){
     let requests={
     sender:this.id,
-    receive:receiver
+    receive:receiver,
    }
   console.log(requests);
   axios.post('http://localhost:3000/api/users/friends',requests).then((response)=>{
@@ -76,15 +79,23 @@ methods:{
     alert(response.data.message);
   }).catch(error=>{
       alert(error);
-  }),
-  axios.post('http://localhost:3000/api/users/remreq',requests).then((response)=>{
+  })
+  
+  },
+  removefromrequests(receiver){
+    let posts={
+    sender:this.id,
+    receive:receiver,
+   }
+  console.log(posts);
+  axios.post('http://localhost:3000/api/users/remreq',posts).then((response)=>{
     console.log(response);
     alert(response.data.message);
   }).catch(error=>{
       alert(error);
   })
   }
-  }
+}
 };
 
 </script>

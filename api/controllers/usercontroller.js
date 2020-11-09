@@ -188,7 +188,7 @@ module.exports.remreq = [
   function(req,res,next) {
     const sender=req.body.sender;
     const receiver=req.body.receive;
-   User.updateOne({_id:ObjectId(sender)},{$pull: {requests:receiver,},} ,function(err, users){
+   User.updateOne({_id:ObjectId(sender)},{$pull: { requests:receiver,},},{new:true},function(err, users){
      if(err) {
          return res.status(500).json({
              message: 'Error getting records.'
