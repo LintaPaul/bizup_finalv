@@ -12,7 +12,8 @@
             
             <div v-for="user_alias in User">
                   <div v-if="cat.usertype==='Investor'|| cat.usertype==='Startup'">
-                <div v-if="user_alias._id!=id  && checkifreq(user_alias._id,cat.requests)===true">
+                <div v-if="user_alias._id!=id  && checkifreq(cat._id,user_alias.requests)===true && checkiffriends(user_alias.id,cat.friends)===true
+              && checkifreq(user_alias._id,cat.requests)===true">
                 <div  v-for="p in cat.preference" >
                     
                          
@@ -55,7 +56,7 @@
             
                   <div v-if="cat.usertype==='Infra'||cat.usertype=='Tech'||cat.usertype==='Marketing'">
                     <div v-for="p in cat.preference">
-                      <div v-if="user_alias.usertype==p">
+                      <div v-if="user_alias.usertype==p && checkiffriends(user_alias.id,cat.friends)===true &&checkifreq(cat._id,user_alias.requests)===true && checkifreq(user_alias._id,cat.requests)===true">
                           <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
@@ -122,7 +123,14 @@ export default {
   methods:{
     checkifreq:function(id,reqs){
       for(var i in reqs){
-        if(id==reqs[i])
+        if(id===reqs[i])
+        return false;
+      }
+      return true;
+    },
+    checkiffriends:function(id,frds){
+      for(var i in frds){
+        if(id===frds[i])
         return false;
       }
       return true;

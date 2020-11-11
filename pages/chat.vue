@@ -19,10 +19,11 @@
                                           <div class="card">
                                               <div v-for="uf in user_alias.friends">
                                           <div class="card-body">
-                                                 <h5 class="card-title">{{uf}}</h5>
+                                                 <div v-for="fruser in User" v-if="fruser._id===uf">
+                                                 <h5 class="card-title">{{fruser.ename}}</h5>
                              
                              
-                                                  <a href="https://meet.google.com" target="blank" class="card-link">Click to schedule meeting</a>
+                                                  <a href="https://meet.google.com" target="blank" class="card-link">Click to schedule meeting</a></div>
                                           </div><!--card body--> 
                                         </div><!--card-->
                                  </div><!--v-for inner-->
