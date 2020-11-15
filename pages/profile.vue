@@ -5,7 +5,7 @@
     <div class="container">
       <div><button class="optbtns" @click="redfeeds">Go to feeds</button>
         </div>
-         <div><button class="optbtns" @click="editprofile">Edit my profile</button>
+         <div><button class="optbtns" style="margin-top:10%;" @click="editprofile">Edit my profile</button>
         </div>
       <div class="row">
         
@@ -95,7 +95,7 @@ methods:{
   redfeeds(){
     location.replace(`/feednew?id=${this.id}`);
   },
-  editmyprofile(){
+  editprofile(){
     location.replace(`/editprofile?id=${this.id}`);
   }
   }
