@@ -33,6 +33,7 @@ router.post('/users/login', usersController.login)
 
 // Get User
 router.get('/users/user', usersController.user)
-
+//editprofile
+router.post('/users/editprofile',usersController.eprofile)
 
 module.exports = router

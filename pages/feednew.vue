@@ -2,7 +2,10 @@
  <section>
   
     <Headers />
-    <h4 style="position:absolute;margin-top:-15%;">You are viewing recommendations based on your category</h4>  
+    <div v-if="cat.usertype==='Investor'||cat.usertype==='Startup'">
+      <h4 style="position:absolute;margin-top:-16%;">You are viewing recommendations on your category {{cat.category}} and your preferred choices {{cat.preference}}</h4>
+    </div>
+    <div v-else>You are viewing recommendations as per your preferences {{cat.preference}}</div>
     <div class="container">
       
       <div class="row">
@@ -12,9 +15,9 @@
             
             <div v-for="user_alias in User">
                   <div v-if="cat.usertype==='Investor'|| cat.usertype==='Startup'">
-                <div v-if="user_alias._id!=id  && checkifreq(cat._id,user_alias.requests)===true && checkiffriends(user_alias.id,cat.friends)===true
-              && checkifreq(user_alias._id,cat.requests)===true">
-                <div  v-for="p in cat.preference" >
+                <div v-if="user_alias._id!=id && checkifreq(cat._id,user_alias.requests)===true && checkiffriends(user_alias._id,cat.friends)===true
+                       && checkifreq(user_alias._id,cat.requests)===true">
+                  <div  v-for="p in cat.preference" >
                     
                          
                      <div v-if="p==='Marketing' || p==='Infra' || p==='Tech'">
@@ -28,7 +31,7 @@
                               <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
                               <p class="card-text">{{user_alias.about}}</p>
                               <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
-                              <a href="#" class="card-link">Not interested</a>
+                              
                           </div><!--card-body-->
                        </div><!--card-->
                        </div><!--usertype-->
@@ -44,7 +47,7 @@
                               <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
                               <p class="card-text">{{user_alias.about}}</p>
                               <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
-                              <a href="#" class="card-link">Not interested</a>
+                              
                           </div><!--card-body-->
                        </div><!--card-->
                        </div><!--v-if p-->
@@ -56,7 +59,7 @@
             
                   <div v-if="cat.usertype==='Infra'||cat.usertype=='Tech'||cat.usertype==='Marketing'">
                     <div v-for="p in cat.preference">
-                      <div v-if="user_alias.usertype==p && checkiffriends(user_alias.id,cat.friends)===true &&checkifreq(cat._id,user_alias.requests)===true && checkifreq(user_alias._id,cat.requests)===true">
+                      <div v-if="user_alias.usertype==p">
                           <div class="card">
                           <div class="card-body">
                               <h5 class="card-title">{{user_alias.ename}}</h5>
@@ -65,7 +68,7 @@
                               <span class="card-subtitle mb-2 text-muted" >Usertype:{{user_alias.usertype}}</span>
                               <p class="card-text">{{user_alias.about}}</p>
                               <button  v-on:click="sendreq(user_alias._id)" class="optbtns">Interested</button>
-                              <a href="#" class="card-link">Not interested</a>
+                              
                           </div><!--card-body-->
                        </div>
                       </div>
@@ -129,8 +132,8 @@ export default {
       return true;
     },
     checkiffriends:function(id,frds){
-      for(var i in frds){
-        if(id===frds[i])
+      for(var j in frds){
+        if(id===frds[j])
         return false;
       }
       return true;

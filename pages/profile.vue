@@ -5,6 +5,8 @@
     <div class="container">
       <div><button class="optbtns" @click="redfeeds">Go to feeds</button>
         </div>
+         <div><button class="optbtns" @click="editprofile">Edit my profile</button>
+        </div>
       <div class="row">
         
         <div class="col-md-12">
@@ -92,6 +94,9 @@ methods:{
   },
   redfeeds(){
     location.replace(`/feednew?id=${this.id}`);
+  },
+  editmyprofile(){
+    location.replace(`/editprofile?id=${this.id}`);
   }
   }
 };

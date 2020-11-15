@@ -280,3 +280,29 @@ module.exports.list = function (req, res, next) {
     return res.json(user);
   });
 }
+//editprofile
+module.exports.eprofile = [
+  function(req,res,next) {
+    const sender=req.body.id;
+    const name=req.body.ename;
+    const des=req.body.about;
+    const add=req.body.address;
+    const loc=req.body.location;
+    const pho=req.body.phone;
+    const cat=req.body.category;
+    const pre=req.body.preference;
+    const mail=req.body.email;
+
+   User.updateOne({_id:ObjectId(sender)},{$set:{ ename:name ,about:des,address:add,location:loc,phone:pho,category:cat,preference:pre,email:mail,},} ,{upsert:true},function(err, users){
+     if(err) {
+         return res.status(500).json({
+             message: 'Error getting records.'
+         });
+     }
+     return res.json({
+       message:"Your profile has been updated!!"
+     });
+    });
+  }
+]
+

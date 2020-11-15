@@ -2,8 +2,8 @@
     <section>
   <Headers/>
   <div class="container">
-      <button class="optbtns" @click="redfeeds">Go back to feeds</button>
-     <!-- <div class="row">-->
+      <button class="optbtns" style="position:absolute;margin-top:6%;" @click="redfeeds">Go back to feeds</button>
+     <div class="row">
           <div v-for="user_alias in User">
               <div v-show="user_alias._id==id">
                   <div v-for="q in user_alias.requests">
@@ -11,6 +11,7 @@
                             <div v-if="requser._id==q">
                                 <div class="card col-12">
                                     <div class="card-title">{{requser.ename}}</div>
+                                    <div class="card-subtitle text-muted">Usertype:{{requser.usertype}}</div>
                                     <div class="card-body">
                                         {{requser.about}}<br>
                                         {{requser.phone}}<br>
@@ -25,7 +26,7 @@
                      </div>
               </div>
           </div>
-      <!--</div>-->
+      </div>
     
   </div><!--container-->
 </section>
@@ -53,7 +54,8 @@ export default {
 methods:{
    callboth:function(id){
      this.addtofriends(id),
-     this.removefromrequests(id)
+     this.removefromrequests(id),
+     this.crossfriendsadd(id)
    },
   generatereq:function(id)
   {
@@ -81,6 +83,19 @@ methods:{
       alert(error);
   })
   
+  },
+  crossfriendsadd(receiver){
+let requests={
+    sender:receiver,
+    receive:this.id,
+   }
+  console.log(requests);
+  axios.post('http://localhost:3000/api/users/friends',requests).then((response)=>{
+    console.log(response);
+    alert("Cross friend addition");
+  }).catch(error=>{
+      alert(error);
+  })
   },
   removefromrequests(receiver){
     let posts={
@@ -115,17 +130,15 @@ methods:{
 }
 .row{
  
-   position: relative;
-  top:-10px;
-  padding-top:0px;
-
- 
+   position: absolute;
+  margin-top:-20%;
+  margin-bottom: 10%;
 }
 .col-12{
-  position:relative;
+  position: relative;
   left:0%;
-  top:20%;
-  bottom:45%;
+  margin-top:-1%;
+  bottom:20%;
   right:20%;
 
 }
