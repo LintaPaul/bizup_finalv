@@ -1,14 +1,15 @@
 <template>
   <section class="container">
+   <div><button class="optbtns" @click="redfeeds">Go to feeds</button></div>
     <div class="main">
        
       <form>
       <div class="row">
-          <h3>Edit Profile</h3><br><br>
+          <h3><b>EDIT PROFILE</b></h3><br><br>
           <div class="col-6">
             <div class="card">
                 <div class="form-group">
-                <label for="enterprisename">Enterprise Name</label>
+                <label for="enterprisename"><b>Enterprise Name</b></label>
                 <input required
                   type="text"
                   class="form-control"
@@ -17,33 +18,33 @@
                 />
                 </div><!--form-group-->
               <div class="form-group">
-                <label for="About Us">Edit About</label>
+                <label for="About Us"><b> About</b></label>
                 <textarea
                   class="form-control"
                   id="About Us"
                   v-model="form.about"/>
               </div><!--form-group-->
               <div class="form-group">
-                <label for="Email">Email</label>
+                <label for="Email"><b>Email</b></label>
                 <input required type="text" class="form-control" id="Email" v-model="form.email"/>
                 </div><!--form-group-->
                 <div class="form-group">
-                <label for="phone">Phone No</label>
+                <label for="phone"><b>Phone No</b></label>
                 <input required type="text" class="form-control" id="phone" v-model="form.phone"/>
                 </div><!--form-group-->
 
                 <div class="form-group">
-                <label for="location">Location</label>
+                <label for="location"><b>Location</b></label>
                 <input required type="text" class="form-control" id="location" v-model="form.location"/>
                 </div><!--form-group-->
 
                 <div class="form-group">
-                <label for="address">Address</label>
+                <label for="address"><b>Address</b></label>
                 <textarea class="form-control" id="address" v-model="form.address"/>
                 </div><!--form-group-->
 
                 <div class="form-group">
-                <label for="Category">Choose your category(If you are an investor select the category you want to invest in)</label>
+                <label for="Category"><b>Choose your category(If you are an investor select the category you want to invest in)</b></label>
                 <select class="form-control" id="Category" v-model="form.category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
@@ -54,8 +55,8 @@
                 </select>
               </div><!--form-group-->
               <div class="form-group">
-                Whom do you want to connect with through this platform?(pick 1
-                or more)
+               <b> Whom do you want to connect with through this platform?(pick 1
+                or more)</b>
                 <div class="form-check">
                   <label class="form-check-label" for="ptype1">Investors</label>
                   <input class="form-check-input" type="checkbox" id="ptype1" value="Investor" v-model="form.preference">
@@ -78,12 +79,12 @@
                 </div><!--form-check-->
 
               </div><!--form-group-->
-                
+                <input type="submit" value="Update Profile" class="button--grey" @click="addtoAPI"/>&emsp;
+
                 </div><!--card-->
           </div><!--col-6-->
           </div><!--row-->
-          <input type="submit" value="Update Profile" class="button--grey" @click="addtoAPI"/>&emsp;
-
+          
         </form>
         </div>
         </section>
@@ -96,6 +97,7 @@ export default {
   data(){
     return{
         id:this.$route.query.id,
+        cat:[],
          form:{
            ename:'',
            about:'',
@@ -108,9 +110,26 @@ export default {
           }
     }
   },
+  mounted:function()
+{
+    this.getloggeduser(this.id)
+    
+},
 methods:
 {
-
+   
+    getloggeduser:function(id)
+{
+  let newuser={
+    id:this.id
+  }
+  console.log(newuser);
+  axios.post('http://localhost:3000/api/users/idsearch',newuser).then((response)=>{
+     this.cat=response.data;
+  }).catch((error)=>{
+    console.log(error);
+  })
+},
     addtoAPI(){
       let newform={
 
@@ -132,7 +151,10 @@ methods:
         console.log(error);
         alert(error);
       })
-    }
+    },
+  redfeeds(){
+    location.replace(`/feednew?id=${this.id}`);
+  }
 
 }
 }
@@ -141,15 +163,19 @@ methods:
 <style scoped>
 .container {
   padding: 10px;
+  
 }
 .main {
-  padding: 5px;
+  padding: 10px;
   height: 100vh;
+  width:-200%;
+  
 }
 .card {
-  border: #3499 100px solid;
+  border: #93D 50px solid;
   margin-bottom: 4px;
-  padding: 12px;
+  margin-top:50px;
+  padding: 50px;
   text-align:justify;
 }
 .col-6 {
@@ -159,6 +185,19 @@ methods:
 .form-group input,
 textarea,
 select {
-  width: 100%;
+  width: 110%;
 }
+.optbtns{
+  margin:4px;
+  padding:4px;
+  background-color: #93D;
+  color:white;
+  border:none;
+  border-radius:10px;
+  position:absolute;
+  left:10px;
+  top:50px;
+}
+
+
 </style>

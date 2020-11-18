@@ -6,7 +6,6 @@
     <div class="row">
       
     <h3>View your connections in Bizup and keep your relations alive...</h3>
-    
                   <div>
                     <button class="optbtns" @click="redfeeds">Go to feeds</button>
                   </div>
@@ -21,7 +20,7 @@
                                           <div class="card-body">
                                                  <div v-for="fruser in User" v-if="fruser._id===uf">
                                                  <h5 class="card-title">{{fruser.ename}}</h5>
-                             
+                                                      <button @click="passonid(fruser._id)">Message them</button>
                              
                                                   <a href="https://meet.google.com" target="blank" class="card-link">Click to schedule meeting</a></div>
                                           </div><!--card body--> 
@@ -31,7 +30,18 @@
                       </div><!--show-->
                </div><!--outerloop-->
             </div><!--col-->
+            <div class="col-6 offset-4" v-show="displaytxt">
+              hiii thereee
+              <form>
+                <textarea>
+                  </textarea>
+                  <button>Send message</button>
+                  <button @click="txtdisappear()">Cancel</button>
+                </form>
+            </div>
     </div><!--row-->
+    
+        
         </div><!--container-->
 </section>   
    
@@ -51,16 +61,39 @@ export default {
     data(){
         return{
             User: [],
-            id:this.$route.query.id
+            id:this.$route.query.id,
+            lguser:[],
+            displaytxt:false
            
         }
     },
     mounted: function()
-{
+{  this.getloggeduser(this.id)
    this.generateprofile(this.id)
 },
 
 methods:{
+  txtdisappear(){
+    this.displaytxt=false
+  },
+  passonid(val){
+    console.log(val);
+     this.displaytxt=true
+    //this.gotomessage(val);//write original method in gotomessaage function
+  },
+
+  getloggeduser:function(id)
+{
+  let newuser={
+    id:this.id
+  }
+  console.log(newuser);
+  axios.post('http://localhost:3000/api/users/idsearch',newuser).then((response)=>{
+     this.lguser=response.data;
+  }).catch((error)=>{
+    console.log(error);
+  })
+},
  generateprofile:function(id)
   {
     axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{

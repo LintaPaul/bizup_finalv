@@ -17,7 +17,7 @@
                                         {{requser.phone}}<br>
                                         {{requser.email}}<br>
                                         <br>
-                                       <button class="optbtns" @click="callboth(requser._id)">Accept</button>
+                                       <button class="optbtns" @click="callboth(requser._id,requser.ename)">Accept</button>
                                         </div>
                                         
                                 </div>
@@ -52,8 +52,8 @@ export default {
         }
     },
 methods:{
-   callboth:function(id){
-     this.addtofriends(id),
+   callboth:function(id,ename){
+     this.addtofriends(id,ename),
      this.removefromrequests(id),
      this.crossfriendsadd(id)
    },
@@ -70,10 +70,11 @@ methods:{
   redfeeds(){
     location.replace(`/feednew?id=${this.id}`);
   },
-  addtofriends(receiver){
+  addtofriends(receiver,ename){
     let requests={
     sender:this.id,
     receive:receiver,
+    name:ename
    }
   console.log(requests);
   axios.post('http://localhost:3000/api/users/friends',requests).then((response)=>{
@@ -92,7 +93,7 @@ let requests={
   console.log(requests);
   axios.post('http://localhost:3000/api/users/friends',requests).then((response)=>{
     console.log(response);
-    alert("Cross friend addition");
+    //alert("Cross friend addition");
   }).catch(error=>{
       alert(error);
   })
@@ -105,7 +106,7 @@ let requests={
   console.log(posts);
   axios.post('http://localhost:3000/api/users/remreq',posts).then((response)=>{
     console.log(response);
-    alert(response.data.message);
+   // alert(response.data.message);
   }).catch(error=>{
       alert(error);
   })
