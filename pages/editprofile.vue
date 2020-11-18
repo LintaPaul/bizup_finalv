@@ -79,7 +79,7 @@
                 </div><!--form-check-->
 
               </div><!--form-group-->
-                <input type="submit" value="Update Profile" class="button--grey" @click="addtoAPI"/>&emsp;
+                <input type="submit" value="Update Profile" class="button--grey" @click="addtoprofile()"/>&emsp;
 
                 </div><!--card-->
           </div><!--col-6-->
@@ -130,7 +130,7 @@ methods:
     console.log(error);
   })
 },
-    addtoAPI(){
+    addtoprofile(){
       let newform={
 
            id:this.id,
@@ -143,11 +143,10 @@ methods:
            address:this.form.address,
            phone:this.form.phone
       }
-      //console.log(newform);
       axios.post('http://localhost:3000/api/users/editprofile',newform).then((response)=>{
-       console.log(response);
+        console.log(response);
        alert(response.data.message);
-        }).catch((error)=>{
+        }).catch(error=>{
         console.log(error);
         alert(error);
       })
