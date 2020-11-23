@@ -39,6 +39,9 @@ const user=new mongoose.Schema({
     },
     requests:{
         type:Object,
+    },
+    message:{
+        type:Object,
     }
 });
 module.exports=mongoose.model('user',user);

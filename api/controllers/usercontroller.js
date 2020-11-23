@@ -184,6 +184,42 @@ module.exports.cfriends = [
    });
   }
 ]
+//addmsg
+module.exports.addmsg = [
+  function(req,res,next) {
+    const sen=req.body.sender;
+    const receiver=req.body.receive;
+    const msg=req.body.txt;
+   User.updateOne({_id:ObjectId(receiver)},{$push: {message:{fromid:sen,text:msg}},}, {upsert:true},function(err, users){
+     if(err) {
+         return res.status(500).json({
+             message: 'Error getting records.'
+         });
+     }
+     return res.json({
+       message:"message sent!!"
+     });
+   });
+  }
+]
+//removemsgs
+module.exports.remmsg = [
+  function(req,res,next) {
+    const sen=req.body.sender;
+    const receiver=req.body.receive;
+    const msg=req.body.text1;
+   User.updateOne({_id:ObjectId(sen)},{$pull: {message:{fromid:receiver,text:msg}},}, {new:true},function(err, users){
+     if(err) {
+         return res.status(500).json({
+             message: 'Error getting records.'
+         });
+     }
+     return res.json({
+       message:"message removed"
+     });
+   });
+  }
+]
 //removerequests
 module.exports.remreq = [
   function(req,res,next) {

@@ -26,8 +26,12 @@ router.post('/users/idsearch',usersController.category)
 router.post('/users/req',usersController.creq)
 //addtofriends
 router.post('/users/friends',usersController.cfriends)
-//
+//removerequests
 router.post('/users/remreq',usersController.remreq)
+//addmessage
+router.post('/users/addmessage',usersController.addmsg)
+//removemessages
+router.post('/users/remsg',usersController.remmsg)
 // Login
 router.post('/users/login', usersController.login)
 

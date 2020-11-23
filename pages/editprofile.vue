@@ -131,6 +131,14 @@ methods:
   })
 },
     addtoprofile(){
+      for(var i in this.form){
+        var k=this.form[i];
+        if(k==="")
+        {
+          this.form[i]=this.cat[i];
+        }
+
+      }
       let newform={
 
            id:this.id,

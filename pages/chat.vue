@@ -8,36 +8,48 @@
     <h3>View your connections in Bizup and keep your relations alive...</h3>
                   <div>
                     <button class="optbtns" @click="redfeeds">Go to feeds</button>
+                    <button class="optbtns1" @click="gotoinbox">View my inbox</button>
                   </div>
    <div class="col-12">
                <div v-for="user_alias in User">
                       <div v-show="user_alias._id===id">
                         
                                
-
+                                         <div class="col-6">
                                           <div class="card">
                                               <div v-for="uf in user_alias.friends">
                                           <div class="card-body">
                                                  <div v-for="fruser in User" v-if="fruser._id===uf">
                                                  <h5 class="card-title">{{fruser.ename}}</h5>
-                                                      <button @click="passonid(fruser._id)">Message them</button>
+                                                      <button class="btn" @click="passonid(fruser._id)">Message them</button>
                              
-                                                  <a href="https://meet.google.com" target="blank" class="card-link">Click to schedule meeting</a></div>
+                                                  </div></div>
                                           </div><!--card body--> 
                                         </div><!--card-->
+                                          </div>
+                                          <div class="col-6">
+                                            <div v-for="msg in user_alias.message">
+                                              {{msg.from}}
+                                              {{msg.txt}}
+                                            </div>
+                                          </div>
                                  </div><!--v-for inner-->
                          
                       </div><!--show-->
                </div><!--outerloop-->
             </div><!--col-->
-            <div class="col-6 offset-4" v-show="displaytxt">
-              hiii thereee
-              <form>
-                <textarea>
+            <div class="col-4 offset-4 card" style="margin-top:-15%;" v-show="displaytxt">
+                <h4> The message box</h4>
+              <form method="POST" action="">
+                <textarea class="form-control" placeholder="enter your message" v-model="form.text">
                   </textarea>
-                  <button>Send message</button>
-                  <button @click="txtdisappear()">Cancel</button>
+                  <br><br>
+                  <button class="btn" @click="gotomessage()">Send message</button>
+                  <button class="btn" @click="txtdisappear()">Cancel</button>
                 </form>
+            </div>
+            <div class="col-6">
+              
             </div>
     </div><!--row-->
     
@@ -61,9 +73,14 @@ export default {
     data(){
         return{
             User: [],
+            form:{
+              text:""
+            },
             id:this.$route.query.id,
             lguser:[],
-            displaytxt:false
+            displaytxt:false,
+            sender:"",
+            sendername:""
            
         }
     },
@@ -78,10 +95,24 @@ methods:{
   },
   passonid(val){
     console.log(val);
-     this.displaytxt=true
-    //this.gotomessage(val);//write original method in gotomessaage function
+     this.displaytxt=true;
+     this.sender=val;
+     
   },
-
+ gotomessage:function(){
+     let requests={
+    sender:this.id,
+    receive:this.sender,
+    txt:this.form.text,
+   }
+  console.log(requests);
+  axios.post('http://localhost:3000/api/users/addmessage',requests).then((response)=>{
+    //console.log(response);
+    alert(response.data.message);
+  }).catch(error=>{
+      alert(error);
+  })
+ },
   getloggeduser:function(id)
 {
   let newuser={
@@ -106,6 +137,9 @@ methods:{
   },
   redfeeds(){
     location.replace(`/feednew?id=${this.id}`);
+  },
+  gotoinbox(){
+    location.replace(`/inbox?id=${this.id}`);
   }
   }
 };
@@ -158,6 +192,11 @@ methods:{
 }
 .links {
   padding-top: 15px;
+}
+.btn{
+  background-color: #93D;
+  color: white;
+  border:none;
 }
 /* Header/Blog Title */
 /* Create two unequal columns that floats next to each other */
@@ -258,6 +297,18 @@ a:hover {
   left:0px;
   top:0px;
 }
+.optbtns1{
+  margin:4px;
+  padding:4px;
+  background-color: #93D;
+  color:white;
+  border:none;
+  border-radius:10px;
+  position:absolute;
+  right:0px;
+  top:0px;
+}
+
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
   .leftcolumn,
