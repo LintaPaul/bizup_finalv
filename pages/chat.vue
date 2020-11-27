@@ -27,12 +27,7 @@
                                           </div><!--card body--> 
                                         </div><!--card-->
                                           </div>
-                                          <div class="col-6">
-                                            <div v-for="msg in user_alias.message">
-                                              {{msg.from}}
-                                              {{msg.txt}}
-                                            </div>
-                                          </div>
+                                          
                                  </div><!--v-for inner-->
                          
                       </div><!--show-->

@@ -175,10 +175,7 @@ export default {
   },
   methods:
    {
-     gotofront(){
-      alert("Registeration successfull!!Please sign in...");
-      //location.replace(`/`);
-    },
+     
     addtoAPI(){
       let newform={
         usertype:this.form.usertype,
@@ -196,11 +193,8 @@ export default {
       //console.log(newform);
       axios.post('http://localhost:3000/api/users/register',newform).then((response)=>{
        
-        console.log(response);
-       
-        
-        this.gotofront();
-        
+        //console.log(response);
+        alert(response.data.message);
         
       }).catch((error)=>{
         console.log(error);

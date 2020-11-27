@@ -123,7 +123,7 @@ module.exports.register = [
         }
         
         return res.json({
-            message: 'saved',
+            message: 'Registeration successfull!!!Please go back and login',
             _id: user._id
         });
     })
