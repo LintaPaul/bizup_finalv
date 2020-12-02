@@ -75,8 +75,8 @@ module.exports.show = function(req, res) {
 // Register
 module.exports.register = [
   // validations rules
-  validator.body('ename', 'Please enter enterprise Name').isLength({ min: 1 }),
-  validator.body('email', 'Please enter Email').isLength({ min: 1 }),
+  validator.body('ename', 'Please enter enterprise Name').isLength({ min: 5 }),
+  validator.body('email', 'Please enter Email').isLength({ min: 10 }),
   validator.body('email').custom(value => {
     return User.findOne({email:value}).then(user => {
       if (user !== null) {
@@ -84,7 +84,7 @@ module.exports.register = [
       }
     })
   }),
-  validator.body('password', 'Please enter Password').isLength({ min: 1 }),
+  validator.body('password', 'Please enter Password').isLength({ min: 5 }),
 
   function(req, res) {
     // throw validation errors
