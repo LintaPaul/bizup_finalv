@@ -21,6 +21,7 @@
                                           <div class="card-body">
                                                  <div v-for="fruser in User" v-if="fruser._id===uf">
                                                  <h5 class="card-title">{{fruser.ename}}</h5>
+                                                 <h6 class="card-subtitle text-muted">{{fruser.address}}<br>{{fruser.email}}<br>{{fruser.phone}}</h6>
                                                       <button class="btn" @click="passonid(fruser._id)">Message them</button>
                              
                                                   </div></div>

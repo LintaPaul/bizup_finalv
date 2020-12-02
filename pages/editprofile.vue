@@ -3,7 +3,7 @@
    <div><button class="optbtns" @click="redfeeds">Go to feeds</button></div>
     <div class="main">
        
-      <form>
+      <form method="POST">
       <div class="row">
           <h3><b>EDIT PROFILE</b></h3><br><br>
           <div class="col-6">
@@ -79,7 +79,8 @@
                 </div><!--form-check-->
 
               </div><!--form-group-->
-                <input type="submit" value="Update Profile" class="button--grey" @click="addtoprofile()"/>&emsp;
+                <!--<input type="submit" value="Update Profile" class="button--grey" @click="addtoprofile"/>&emsp;-->
+                <button class="button--grey" @click="addtoprofile">Update Profile</button>
 
                 </div><!--card-->
           </div><!--col-6-->
@@ -152,7 +153,7 @@ methods:
            phone:this.form.phone
       }
       axios.post('http://localhost:3000/api/users/editprofile',newform).then((response)=>{
-        console.log(response);
+        //console.log(response);
        alert(response.data.message);
         }).catch(error=>{
         console.log(error);

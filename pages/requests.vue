@@ -11,13 +11,14 @@
                             <div v-if="requser._id==q">
                                 <div class="card col-12">
                                     <div class="card-title">{{requser.ename}}</div>
-                                    <div class="card-subtitle text-muted">Usertype:{{requser.usertype}}</div>
+                                    <div class="card-subtitle text-muted">Usertype:{{requser.usertype}}<br>Contact:{{requser.phone}}<br>
+                                        Email:{{requser.email}}<br></div>
                                     <div class="card-body">
                                         {{requser.about}}<br>
-                                        {{requser.phone}}<br>
-                                        {{requser.email}}<br>
+                                        
                                         <br>
                                        <button class="optbtns" @click="callboth(requser._id,requser.ename)">Accept</button>
+                                       <button class="optbtns" @click="callone(requser._id,requser.ename)">Decline</button>
                                         </div>
                                         
                                 </div>
@@ -56,6 +57,10 @@ methods:{
      this.addtofriends(id,ename),
      this.removefromrequests(id),
      this.crossfriendsadd(id)
+   },
+   callone:function(id,ename){
+      this.removefromrequests(id);
+      alert("Request removed!!")
    },
   generatereq:function(id)
   {

@@ -5,7 +5,7 @@
     <div class="container">
       <div><button class="optbtns" @click="redfeeds">Go to feeds</button>
         </div>
-         <div><button class="optbtns" style="margin-top:10%;" @click="editprofile">Edit my profile</button>
+         <div><button class="optbtnsr" style="margin-top:10%;" @click="editprofile">Edit my profile</button>
         </div>
       <div class="row">
         
@@ -190,6 +190,17 @@ methods:{
   border-radius:10px;
   position:absolute;
   left:10px;
+  top:50px;
+}
+.optbtnsr{
+  margin:4px;
+  padding:4px;
+  background-color: #93D;
+  color:white;
+  border:none;
+  border-radius:10px;
+  position:absolute;
+  right:10px;
   top:50px;
 }
 

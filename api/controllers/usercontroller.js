@@ -251,7 +251,7 @@ module.exports.login = [
       return res.status(422).json({ errors: errors.mapped() });
     }
 
-    // validate email and password are correct
+    // validate username and password are correct
     User.findOne({username: req.body.username}, function(err, user){
         if(err) {
             return res.status(500).json({

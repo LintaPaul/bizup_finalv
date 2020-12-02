@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-12 login-form-1">
         <h3>Login Form</h3>
-        <form>
+        <form method="POST">
           <div class="form-group">
             <input
               type="text"
@@ -38,7 +38,6 @@
 import axios from "axios"
 import {Router} from "vue-router"
 export default {
-  
   data() {
     return {
       login: {
@@ -64,6 +63,7 @@ export default {
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
         this.loguser=response.data.user;
+        
         //console.log(this.category);
         this.url="/feednew?id="+this.id;
        location.replace(`${this.url}`);
@@ -71,7 +71,7 @@ export default {
        
        }).catch((error)=>{
         console.log(error);
-        alert("Sorry login failed"+error);
+        alert("Sorry login failed recheck your credentials");
       })
 
     }

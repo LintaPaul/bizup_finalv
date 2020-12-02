@@ -19,10 +19,7 @@ export default {
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      {
-        rel: "stylesheet",
-        href: "https://use.fontawesome.com/eb953c93be.js"
-      },
+      
       {
         rel: "stylesheet",
         href:
@@ -101,7 +98,7 @@ export default {
 		}
     },
     redirect: {
-		  login: '/user/login', // User will be redirected to this path if login is required
+		  login: '/feednew', // User will be redirected to this path if login is required
 		  logout: '/', // User will be redirected to this path if after logout, current route is protected
 		  home: '/' // User will be redirect to this path after login if accessed login page directly
     },

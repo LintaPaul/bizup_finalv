@@ -2,7 +2,7 @@
   <section class="container">
     <div class="main">
        
-      <form method="POST" action="">
+      <form method="POST">
         <div class="row">
           <h3>Create profile</h3><br><br>
           <p>Fill in the following details to create a profile for your enterprise</p>
@@ -139,7 +139,7 @@
               </div><!--form-group-->
               <div class="form-group">
                 <label for="Cpass">Confirm Password</label>
-                <input type="password" class="form-control" id="Cpass" />
+                <input type="password" class="form-control" id="Cpass"  v-model="form.cpass"/>
               </div><!--form-group-->
             </div><!--subcard-->
           </div><!--col-6-->
@@ -156,6 +156,7 @@
 import axios from "axios"
 import {Router} from "vue-router"
 export default {
+  
   data(){
     return{
          form:{
@@ -169,7 +170,8 @@ export default {
            address:'',
            phone:0,
            username:'',
-           password:''
+           password:'',
+           cpass:''
           }
     }
   },
@@ -188,18 +190,26 @@ export default {
            address:this.form.address,
            phone:this.form.phone,
            username:this.form.username,
-           password:this.form.password
+           password:this.form.password,
+           cpass:this.form.cpass
       }
+      if(newform.password!=newform.cpass)
+      {
+        alert("Retype same password in confirm password!!!");
+      }
+      else
+      {
       //console.log(newform);
       axios.post('http://localhost:3000/api/users/register',newform).then((response)=>{
        
         //console.log(response);
-        alert(response.data.message);
+        alert("Registeration is successfull!!!");
         
       }).catch((error)=>{
         console.log(error);
-        alert(error);
+        alert("Registeration incomplete!please start again");
       })
+      }
     }
     
   }
