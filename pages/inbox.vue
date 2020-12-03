@@ -7,7 +7,7 @@
      <div class="row" style="margin-bottom:40%;">
        <h3>View messages sent to you from friends in Bizup and schedule meetings here..</h3>
           <div v-for="user_alias in User">
-              <div v-show="user_alias._id==id">
+              <div v-show="user_alias._id===id">
                   <div v-for="q in user_alias.message">
                         <div v-for="requser in User">
                             <div v-if="requser._id==q.fromid">
@@ -41,7 +41,7 @@ export default {
   },
  mounted: function()
 {
-   this.generatereq(this.id) 
+   this.generatereq() 
 },
    name: 'use5',
     data(){
@@ -58,7 +58,7 @@ methods:{
    },
   generatereq:function(id)
   {
-    axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
+    axios.get('http://localhost:3000/api/users').then((response)=>{
     console.log(response.data);
     this.User = response.data;
     })

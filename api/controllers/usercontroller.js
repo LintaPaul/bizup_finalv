@@ -75,8 +75,8 @@ module.exports.show = function(req, res) {
 // Register
 module.exports.register = [
   // validations rules
-  validator.body('ename', 'Please enter enterprise Name').isLength({ min: 5 }),
-  validator.body('email', 'Please enter Email').isLength({ min: 10 }),
+  validator.body('ename', 'Please enter enterprise Name').isLength({ min: 1 }),
+  validator.body('email', 'Please enter Email').isLength({ min: 1 }),
   validator.body('email').custom(value => {
     return User.findOne({email:value}).then(user => {
       if (user !== null) {
@@ -84,7 +84,7 @@ module.exports.register = [
       }
     })
   }),
-  validator.body('password', 'Please enter Password').isLength({ min: 5 }),
+  validator.body('password', 'Please enter Password of length atleast 5').isLength({ min: 5 }),
 
   function(req, res) {
     // throw validation errors
@@ -242,7 +242,7 @@ module.exports.remreq = [
 module.exports.login = [
   // validation rules
   validator.body('username', 'Please enter username').isLength({ min: 1 }),
-  validator.body('password', 'Please enter Password').isLength({ min: 1 }),
+  validator.body('password', 'Please enter Password').isLength({ min: 5 }),
 
   function(req, res) {
     // throw validation errors
@@ -279,7 +279,7 @@ module.exports.login = [
           }
           else{
             return res.status(500).json({
-              message: 'Invalid Email or Password entered.'
+              message: 'Invalid username or Password entered.'
             });
           }
           
@@ -297,7 +297,7 @@ module.exports.user = function(req, res) {
       if (err) {
         return res.status(401).json({message: 'unauthorized'})
       } else {
-        return res.json({ user: decoded })
+        return res.json({ user: decoded,token:token })
       }
     });
   }

@@ -81,8 +81,8 @@ export default {
         }
     },
     mounted: function()
-{  this.getloggeduser(this.id)
-   this.generateprofile(this.id)
+{  this.getloggeduser(this.id),
+   this.generateprofile()
 },
 
 methods:{
@@ -121,9 +121,9 @@ methods:{
     console.log(error);
   })
 },
- generateprofile:function(id)
+ generateprofile:function()
   {
-    axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
+    axios.get('http://localhost:3000/api/users').then((response)=>{
     console.log(response.data);
     this.User = response.data;
     })

@@ -18,7 +18,7 @@
                                         
                                         <br>
                                        <button class="optbtns" @click="callboth(requser._id,requser.ename)">Accept</button>
-                                       <button class="optbtns" @click="callone(requser._id,requser.ename)">Decline</button>
+                                       <button class="optbtns" @click="callone(requser._id)">Decline</button>
                                         </div>
                                         
                                 </div>
@@ -42,7 +42,7 @@ export default {
   },
  mounted: function()
 {
-   this.generatereq(this.id) 
+   this.generatereq() 
 },
    name: 'use5',
     data(){
@@ -58,13 +58,13 @@ methods:{
      this.removefromrequests(id),
      this.crossfriendsadd(id)
    },
-   callone:function(id,ename){
+   callone:function(id){
       this.removefromrequests(id);
       alert("Request removed!!")
    },
   generatereq:function(id)
   {
-    axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
+    axios.get('http://localhost:3000/api/users').then((response)=>{
     console.log(response.data);
     this.User = response.data;
     })

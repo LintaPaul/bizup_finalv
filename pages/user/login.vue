@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-12 login-form-1">
         <h3>Login Form</h3>
-        <form method="POST">
+        <form method="POST" action="">
           <div class="form-group">
             <input
               type="text"
@@ -59,7 +59,7 @@ export default {
         password:this.login.password
       }
       axios.post('http://localhost:3000/api/users/login',newlog).then((response)=>{
-        console.log(response.data.user);
+        //console.log(response.data.user);
         this.login.username=response.data.user.username;
         this.id=response.data.user._id;
         this.loguser=response.data.user;
@@ -71,7 +71,7 @@ export default {
        
        }).catch((error)=>{
         console.log(error);
-        alert("Sorry login failed recheck your credentials");
+        alert("Sorry login failed!!! recheck your credentials");
       })
 
     }

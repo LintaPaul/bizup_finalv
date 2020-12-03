@@ -5,14 +5,40 @@
 
       
       <div class="titles">
-        <NLink to="/" class="linkr">Logout</NLink>
+        <!--<NLink to="/" class="linkr">Logout</NLink>-->
+        <button @click="logout()" class="linkr">Logout</button>
       </div>
     </div>
   </section>
 </template>
 <script>
+import axios from "axios"
 export default {
   name: "Headers",
+  data()
+  {
+    return{
+    tk:''
+    }
+  },
+  methods:
+  {
+    logout()
+    {
+       axios.get('http://localhost:3000/api/users/user').then((response)=>{
+         this.tk=response.data.token;
+        localStorage.removeItem(this.tk);
+       location.replace('/');
+       
+       
+       }).catch((error)=>{
+        alert(error);
+      })
+
+       
+    }
+  }
+  
 };
 </script>
 <style scoped>
@@ -45,6 +71,9 @@ export default {
   color: white;
   font-weight: bold;
   text-decoration: none;
+  background-color: inherit;
+  background-blend-mode: color;
+  border:none!important;
 }
 .titles {
   display: inline-block;

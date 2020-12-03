@@ -1,11 +1,19 @@
 <template>
   <section class="container">
     <div class="main">
-       
+       <h3>Create profile</h3>
+          <p style="text-align:justify;">Fill in the following details to create a profile for your enterprise<br>
+          Please note:
+            <br>
+            <ul>
+              <li>Enterprise name should not be left blank</li>
+              <li>Email should not be left blank</li>
+              <li>Password must have a minimum of 5 characters</li>
+              </ul>
+          </p>
       <form method="POST">
         <div class="row">
-          <h3>Create profile</h3><br><br>
-          <p>Fill in the following details to create a profile for your enterprise</p>
+          
           <div class="col-6">
             <div class="subcard">
               <h4>Firm Details</h4>
@@ -159,6 +167,7 @@ export default {
   
   data(){
     return{
+       errors:null,
          form:{
            usertype:'',
            ename:'',
@@ -201,13 +210,12 @@ export default {
       {
       //console.log(newform);
       axios.post('http://localhost:3000/api/users/register',newform).then((response)=>{
-       
-        //console.log(response);
+        //console.log(response.data.message)
         alert("Registeration is successfull!!!");
+        //alert(response.data.message);
         
       }).catch((error)=>{
-        console.log(error);
-        alert("Registeration incomplete!please start again");
+        alert("Conditions not satisfied.plese register again");
       })
       }
     }

@@ -18,7 +18,7 @@
                   <div v-if="cat.usertype==='Investor'|| cat.usertype==='Startup'">
                 <div v-if="user_alias._id!=id && checkifreq(cat._id,user_alias.requests)===true && checkiffriends(user_alias._id,cat.friends)===true
                        && checkifreq(user_alias._id,cat.requests)===true">
-                  <div  v-for="p in cat.preference" >
+                   <div  v-for="p in cat.preference" >
                     
                          
                      <div v-if="p==='Marketing' || p==='Infra' || p==='Tech'">

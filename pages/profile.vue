@@ -70,7 +70,7 @@ export default {
   },
  mounted: function()
 {
-   this.generateprofile(this.id) 
+   this.generateprofile() 
 },
    name: 'use5',
     data(){
@@ -82,9 +82,9 @@ export default {
     },
 methods:{
  
-  generateprofile:function(id)
+  generateprofile:function()
   {
-    axios.get('http://localhost:3000/api/users?id='+ id).then((response)=>{
+    axios.get('http://localhost:3000/api/users').then((response)=>{
     console.log(response.data);
     this.User = response.data;
     })
