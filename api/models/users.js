@@ -13,7 +13,7 @@ const user=new mongoose.Schema({
         type:String,required: true
     },
     category:{
-        type:String,
+        type:Object,
     },
     preference:{
         type:Object,

@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div class="main">
-       <h3>Create profile</h3>
+      <h3>Create profile</h3>
           <p style="text-align:justify;">Fill in the following details to create a profile for your enterprise<br>
           Please note:
             <br>

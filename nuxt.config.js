@@ -60,6 +60,7 @@ export default {
     "@nuxt/http",
       "@nuxtjs/axios",
       "@nuxtjs/auth",
+      '@nuxtjs/vuetify',
     // TODO: Remove it if you want to eject from codeSandbox
     "./codesandbox"
   ],

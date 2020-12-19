@@ -1,41 +1,75 @@
 <template >
-  <section class="main">
-    <br /><br /><br /><br />
-    <div>
-      <h2 class="titles">BiZUp</h2>
+      <v-app id="inspire">
+      <v-carousel cycle interval="4000"
+       :continuous="true"
+       :show-arrows="false" height="100%" >
+    <v-carousel-item
+      v-for="(item,i) in items" :key="i"
+      :src="item.src"
+      transition="fade-transition"
+      reverse-transition="fade-transition"
+      duration="4ms"
+    >
+    <br><br><br><br>
+    <p>
+      <h1 class="title">BizUp</h1>
+      <br><br><br><br>
       <h4 class="subtitle">A one stop solution to all your business needs</h4>
-      <div class="links">
+       <div class="links">
         <u class="txt">New user?</u>
 
-        <NLink to="/user/register" class="button--green">Register</NLink>&emsp;
+        <NLink to="/user/register" class="button--green" style="color:white;">Register</NLink>&emsp;
         <u class="txt">Already a user?</u>
-        <NLink to="/user/login" class="button--grey">Login</NLink>
-      </div>
-    </div>
-  </section>
+        <NLink to="/user/login" class="button--grey" style="color:white;">Login</NLink>
+        </div>
+      </p>
+    </v-carousel-item>
+  </v-carousel>
+  
+      </v-app>
+     
+    
 </template>
 <script>
-export default {};
+export default {
+   data () {
+      return {
+        items: [
+          {
+            src: require('~/assets/images/agri.jpg'),
+          },
+          {
+            src: require('~/assets/images/handloom.jpg'),
+          },
+          {
+            src: require('~/assets/images/pottery.jpg'),
+          },
+          {
+            src: require('~/assets/images/bisup.jpg'),
+          },
+        ],
+      }
+    },
+};
 </script>
 
 <style scoped>
-.main {
-  height: 100vh;
-  min-width: 100% !important;
-  background:black;
-  background-repeat: no-repeat;
-  background-size: 100% !important;
-  background-blend-mode: blend;
+#inspire
+{
+  height:100vh;
+  width:100%;
 }
+
+
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
+  font-family: "Quicksand", "Source Sans Pro","Helvetica Neue", Arial, sans-serif;
+  
+  text-align:center;
   font-weight: 400;
-  font-size: 100px;
-  color: #2E495E;
+  color: #eaedf0;
   letter-spacing: 1px;
-  font-size: 6em;
+  font-size:200px!important;
+  
 }
 .green {
   color: #00C48D;
@@ -54,17 +88,6 @@ export default {};
 }
 * {
   font-family: Roboto;
-}
-.titles {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 120px;
-  line-height: 160px;
-  text-align: center;
-
-  color: #FFFFFF;
-
-  backdrop-filter: blur(4px);
 }
 .subtitle {
   font-style: normal;
@@ -85,4 +108,5 @@ export default {};
 
   color: #FFFFFF;
 }
+
 </style>

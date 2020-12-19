@@ -1,7 +1,7 @@
 <template>
-  <section class="container login-container">
+  <section class="login-container">
     <div class="row">
-      <div class="col-md-12 col-lg-12 login-form-1">
+      <div class="col-md-6 col-lg-12 login-form-1">
         <h3>Login Form</h3>
         <form method="POST" action="">
           <div class="form-group">

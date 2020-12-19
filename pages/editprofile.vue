@@ -45,14 +45,22 @@
 
                 <div class="form-group">
                 <label for="Category"><b>Choose your category(If you are an investor select the category you want to invest in)</b></label>
-                <select class="form-control" id="Category" v-model="form.category">
+                <!--<select class="form-control" id="Category" v-model="form.category">
                   <option selected>Agriculture</option>
                   <option>Handloom</option>
                   <option>Pottery</option>
                   <option>Tech services</option>
                   <option>Infrastructure providers</option>
                   <option>Marketing</option>
-                </select>
+                </select>-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ptype1">Agriculture</label>
+                  <input class="form-check-input" type="checkbox" id="ctype1" value="Agriculture" v-model="form.category">
+                </div><!--form-check-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ptype2">Handloom</label>
+                  <input class="form-check-input" type="checkbox" id="ctype2" value="Handloom" v-model="form.category">
+                </div><!--form-check-->
               </div><!--form-group-->
               <div class="form-group">
                <b> Whom do you want to connect with through this platform?(pick 1
@@ -102,7 +110,7 @@ export default {
          form:{
            ename:'',
            about:'',
-           category:'',
+           category:[],
            preference:[],
            email:'',
            location:'',

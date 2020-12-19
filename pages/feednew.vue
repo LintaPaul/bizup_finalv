@@ -38,7 +38,7 @@
                        </div><!--usertype-->
                        </div><!--mark/tech/infra-->
                        <div v-if="p==='Investor' || p==='Startup'">
-                         <div v-if="user_alias.category===cat.category">
+                         <div v-for="c in cat.category" v-if="user_alias.category===c">
                           <div v-if="user_alias.usertype===p">
                          <div class="card">
                           <div class="card-body">
