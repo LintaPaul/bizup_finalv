@@ -77,6 +77,7 @@ module.exports.register = [
   // validations rules
   validator.body('ename', 'Please enter enterprise Name').isLength({ min: 1 }),
   validator.body('email', 'Please enter Email').isLength({ min: 1 }),
+  validator.body('phone','Please enter a valid phone number').isLength({min: 10,max: 10}),
   validator.body('email').custom(value => {
     return User.findOne({email:value}).then(user => {
       if (user !== null) {

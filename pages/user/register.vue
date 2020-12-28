@@ -61,16 +61,33 @@
                   v-model="form.about"
                 />
               </div><!--form-group-->
+              
               <div class="form-group">
-                <label for="Category">Choose your category(If you are an investor select the category you want to invest in)</label>
-                <select class="form-control" id="Category" v-model="form.category">
-                  <option selected>Agriculture</option>
-                  <option>Handloom</option>
-                  <option>Pottery</option>
-                  <option>Tech services</option>
-                  <option>Infrastructure providers</option>
-                  <option>Marketing</option>
-                </select>
+                Choose your category(If you are an investor select the category/categories you want to invest in)
+                <div class="form-check">
+                  <label class="form-check-label" for="ctype1">Agriculture</label>
+                  <input class="form-check-input" type="checkbox" id="ctype1" value="Agriculture" v-model="form.category">
+                </div><!--form-check-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ctype2">Handloom</label>
+                  <input class="form-check-input" type="checkbox" id="ctype2" value="Handloom" v-model="form.category">
+                </div><!--form-check-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ctype3">Pottery</label>
+                  <input class="form-check-input" type="checkbox" id="ctype3" value="Pottery" v-model="form.category">
+                </div><!--form-check-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ctype4">Tech services</label>
+                  <input class="form-check-input" type="checkbox" id="ctype4" value="Tech services" v-model="form.category">
+                </div><!--form-check-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ctype5">Infrastructure</label>
+                  <input class="form-check-input" type="checkbox" id="ctype5" value="Infrastructure" v-model="form.category">
+                </div><!--form-check-->
+                <div class="form-check">
+                  <label class="form-check-label" for="ctype6">Marketing</label>
+                  <input class="form-check-input" type="checkbox" id="ctype6" value="Marketing" v-model="form.category">
+                </div><!--form-check-->
               </div><!--form-group-->
               <div class="form-group">
                 Whom do you want to connect with through this platform?(pick 1
@@ -134,6 +151,7 @@
                 <label for="Phone">Phone</label>
                 <input class="form-control" id="Phone" v-model="form.phone" />
                </div><!--form-group-->
+               
             </div><!--subcard-->
             <div class="subcard">
               <h5>Login Details</h5>
@@ -172,7 +190,7 @@ export default {
            usertype:'',
            ename:'',
            about:'',
-           category:'',
+           category:[],
            preference:[],
            email:'',
            location:'',
@@ -215,6 +233,7 @@ export default {
         //alert(response.data.message);
         
       }).catch((error)=>{
+        this.errors=response.errors
         alert("Conditions not satisfied.plese register again");
       })
       }

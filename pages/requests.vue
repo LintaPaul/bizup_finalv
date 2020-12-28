@@ -9,7 +9,7 @@
                   <div v-for="q in user_alias.requests">
                         <div v-for="requser in User">
                             <div v-if="requser._id==q">
-                                <div class="card col-12">
+                                <div class="card col-6 mb-3 pl-2 mx-auto">
                                     <div class="card-title">{{requser.ename}}</div>
                                     <div class="card-subtitle text-muted">Usertype:{{requser.usertype}}<br>Contact:{{requser.phone}}<br>
                                         Email:{{requser.email}}<br></div>

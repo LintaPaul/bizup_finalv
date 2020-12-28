@@ -7,7 +7,7 @@
       v-for="(item,i) in items" :key="i"
       :src="item.src"
       transition="fade-transition"
-      reverse-transition="fade-transition"
+      reverse-transition="slide-x-transition"
       duration="4ms"
     >
     <br><br><br><br>

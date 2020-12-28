@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div class="header">
+  <div class="header">
       <div class="titles"><NLink to="/" class="link">Bizup</NLink></div>
 
       
@@ -42,8 +42,8 @@ export default {
 };
 </script>
 <style scoped>
+
 .header {
-  grid-area: header;
   position: absolute;
   top: 0;
   width: 100%;

@@ -1,12 +1,13 @@
 <template>
- <section>
-  
-    <Headers />
-
+ 
+    
+    <section>
+      <Headers/>
     <div v-if="cat.usertype==='Investor'||cat.usertype==='Startup'">
       <h4 style="position:absolute;margin-top:-16%;">You are viewing recommendations on your category {{cat.category}} and your preferred choices {{cat.preference}}</h4>
     </div>
     <div v-else><h4 style="position:absolute;margin-top:-16%;">You are viewing recommendations as per your preferences {{cat.preference}}</h4></div>
+    
     <div class="container">
       
       <div class="row">
@@ -60,7 +61,7 @@
             
                   <div v-if="cat.usertype==='Infra'||cat.usertype=='Tech'||cat.usertype==='Marketing'">
                     <div v-for="p in cat.preference">
-                      <div v-if="user_alias.usertype===p&& checkifreq(cat._id,user_alias.requests)===true && checkiffriends(user_alias._id,cat.friends)===true
+                      <div v-if="user_alias.usertype===p && user_alias._id!=id && checkifreq(cat._id,user_alias.requests)===true && checkiffriends(user_alias._id,cat.friends)===true
                        && checkifreq(user_alias._id,cat.requests)===true ">
                           <div class="card">
                           <div class="card-body">
@@ -92,10 +93,7 @@
             </div><!--col-6-2-->
         </div><!--row-->
         </div><!--container-->
-    
-    
-    
-  </section>
+    </section>
 </template>
 
 <script>
@@ -208,14 +206,14 @@ gotorequests(){
 
 <style scoped >
 .container {
-  min-height: 100vh;
+  min-height:100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   background: white !important;
   background-size: 100% !important;
-  overflow: visible;
+
   margin-top: 0px;
   background-color: black;
 }
